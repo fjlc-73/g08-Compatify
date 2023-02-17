@@ -5,6 +5,6 @@
 - Enrique Pérez Haro
 - Jesús Fuentes Moya
 - María Peinado Toledo
-- Alberto Trigueros Postigo Sí está
+- Alberto Trigueros Postigo no esta
 - Antonio Trujillo Reino
 - Juan José Rodríguez Hernández
