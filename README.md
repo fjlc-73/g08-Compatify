@@ -5,7 +5,7 @@
 - Enrique Pérez Haro
 - Jesús Fuentes Moya
 - María Peinado Toledo
-- Alberto Trigueros Postigo no esta
+- Alberto Trigueros Postigo
 - Antonio Trujillo Reino
 - Juan José Rodríguez Hernández
 -Cambios en local
