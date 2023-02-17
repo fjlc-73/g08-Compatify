@@ -2,7 +2,7 @@
 
 - Fernando Javier López Cerezo
 - Emilio Gómez Esteban
-- Enrique Pérez Haro
+- Enrique Pérez Haro no esta
 - Jesús Fuentes Moya
 - María Peinado Toledo
 - Alberto Trigueros Postigo no esta
