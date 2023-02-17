@@ -8,5 +8,3 @@
 - Alberto Trigueros Postigo
 - Antonio Trujillo Reino
 - Juan José Rodríguez Hernández
-
--ellon musk
