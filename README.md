@@ -8,3 +8,4 @@
 - Alberto Trigueros Postigo no esta
 - Antonio Trujillo Reino
 - Juan José Rodríguez Hernández
+-Cambios en local
