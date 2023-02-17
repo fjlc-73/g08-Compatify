@@ -6,4 +6,3 @@
 - Jesús Fuentes Moya
 - María Peinado Toledo
 - Alberto Trigueros Postigo
-- Trujillo
