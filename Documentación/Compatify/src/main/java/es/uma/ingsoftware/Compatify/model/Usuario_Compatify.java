@@ -3,13 +3,15 @@ package es.uma.ingsoftware.Compatify.model;
 import java.util.Objects;
 
 import jakarta.persistence.Entity;
+import jakarta.persistence.Id;
 
 
 @Entity
 public class Usuario_Compatify {
 	
-	private String nombre;
+	@Id
 	private String email;
+	private String nombre;
 	private String contraseña;
 	private boolean cuenta_privada;
 	

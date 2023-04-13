@@ -3,10 +3,13 @@ package es.uma.ingsoftware.Compatify.model;
 import java.util.Objects;
 
 import jakarta.persistence.Entity;
+import jakarta.persistence.Id;
 
 @Entity
 public class Canción {
 	
+	@Id
+	private String spotify_id;
 	private String nombre;
 	
 	public Canción() {
