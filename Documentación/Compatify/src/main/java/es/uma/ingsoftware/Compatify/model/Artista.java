@@ -1,5 +1,6 @@
 package es.uma.ingsoftware.Compatify.model;
 
+import java.util.Arrays;
 import java.util.Objects;
 
 import jakarta.persistence.Entity;
@@ -11,10 +12,37 @@ public class Artista {
 	@Id
 	private String spotify_id;
 	private String nombre;
+	private String[] genero = new String[3];
 	
 	public Artista() {
 		
 	}
+	
+	
+
+	public String getSpotify_id() {
+		return spotify_id;
+	}
+
+
+
+	public void setSpotify_id(String spotify_id) {
+		this.spotify_id = spotify_id;
+	}
+
+
+
+	public String[] getGenero() {
+		return genero;
+	}
+
+
+
+	public void setGenero(String[] genero) {
+		this.genero = genero;
+	}
+
+
 
 	public String getNombre() {
 		return nombre;
@@ -24,9 +52,11 @@ public class Artista {
 		this.nombre = nombre;
 	}
 
+	
+	
 	@Override
 	public int hashCode() {
-		return Objects.hash(nombre);
+		return Objects.hash(spotify_id);
 	}
 
 	@Override
@@ -38,12 +68,12 @@ public class Artista {
 		if (getClass() != obj.getClass())
 			return false;
 		Artista other = (Artista) obj;
-		return Objects.equals(nombre, other.nombre);
+		return Objects.equals(spotify_id, other.spotify_id);
 	}
 
 	@Override
 	public String toString() {
-		return "Artista [nombre=" + nombre + "]";
+		return "Artista [spotify_id=" + spotify_id + ", nombre=" + nombre + ", genero=" + Arrays.toString(genero) + "]";
 	}
 	
 	

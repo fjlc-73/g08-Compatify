@@ -44,7 +44,7 @@ public class Usuario_Compatify {
 	}
 	@Override
 	public int hashCode() {
-		return Objects.hash(email, nombre);
+		return Objects.hash(email);
 	}
 	@Override
 	public boolean equals(Object obj) {
@@ -55,7 +55,7 @@ public class Usuario_Compatify {
 		if (getClass() != obj.getClass())
 			return false;
 		Usuario_Compatify other = (Usuario_Compatify) obj;
-		return Objects.equals(email, other.email) && Objects.equals(nombre, other.nombre);
+		return Objects.equals(email, other.email);
 	}
 	@Override
 	public String toString() {
