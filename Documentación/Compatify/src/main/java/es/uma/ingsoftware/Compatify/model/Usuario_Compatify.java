@@ -10,8 +10,8 @@ import jakarta.persistence.Id;
 public class Usuario_Compatify {
 	
 	@Id
-	private String email;
 	private String nombre;
+	private String email;
 	private String contraseña;
 	private boolean cuenta_privada;
 	
@@ -44,7 +44,7 @@ public class Usuario_Compatify {
 	}
 	@Override
 	public int hashCode() {
-		return Objects.hash(email);
+		return Objects.hash(nombre);
 	}
 	@Override
 	public boolean equals(Object obj) {
@@ -55,7 +55,7 @@ public class Usuario_Compatify {
 		if (getClass() != obj.getClass())
 			return false;
 		Usuario_Compatify other = (Usuario_Compatify) obj;
-		return Objects.equals(email, other.email);
+		return Objects.equals(nombre, other.nombre);
 	}
 	@Override
 	public String toString() {
