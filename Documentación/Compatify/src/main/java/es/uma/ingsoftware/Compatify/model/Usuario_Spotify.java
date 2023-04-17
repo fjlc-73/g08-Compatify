@@ -1,37 +1,77 @@
 package es.uma.ingsoftware.Compatify.model;
 
+import java.util.List;
 import java.util.Objects;
 
 import jakarta.persistence.Entity;
 import jakarta.persistence.Id;
+import jakarta.persistence.ManyToMany;
+import jakarta.persistence.OneToOne;
 
 @Entity
 public class Usuario_Spotify {
-	
+
 	@Id
 	private String nombre;
 	private String token;
-	
+
+	@OneToOne(mappedBy = "usuarioSpotify")
+	private Usuario_Compatify usuarioCompatify;
+
+	@ManyToMany
+	private List<Artista> favArtistas;
+	@ManyToMany
+	private List<Cancion> favCancion;
+
 	public Usuario_Spotify() {
-		
+
 	}
-	
+
+	public Usuario_Compatify getUsuarioCompatify() {
+		return usuarioCompatify;
+	}
+
+	public void setUsuarioCompatify(Usuario_Compatify usuarioCompatify) {
+		this.usuarioCompatify = usuarioCompatify;
+	}
+
+	public List<Artista> getFavArtistas() {
+		return favArtistas;
+	}
+
+	public void setFavArtistas(List<Artista> favArtistas) {
+		this.favArtistas = favArtistas;
+	}
+
+	public List<Cancion> getFavCancion() {
+		return favCancion;
+	}
+
+	public void setFavCancion(List<Cancion> favCancion) {
+		this.favCancion = favCancion;
+	}
+
 	public String getNombre() {
 		return nombre;
 	}
+
 	public void setNombre(String nombre) {
 		this.nombre = nombre;
 	}
+
 	public String getToken() {
 		return token;
 	}
+
 	public void setToken(String token) {
 		this.token = token;
 	}
+
 	@Override
 	public int hashCode() {
 		return Objects.hash(nombre);
 	}
+
 	@Override
 	public boolean equals(Object obj) {
 		if (this == obj)
@@ -43,13 +83,10 @@ public class Usuario_Spotify {
 		Usuario_Spotify other = (Usuario_Spotify) obj;
 		return Objects.equals(nombre, other.nombre);
 	}
+
 	@Override
 	public String toString() {
 		return "Usuario_Spotify [nombre=" + nombre + ", token=" + token + "]";
 	}
-	
-	
-	
-	
 
 }
