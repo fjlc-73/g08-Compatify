@@ -1,6 +1,5 @@
 package es.uma.ingsoftware.Compatify.model;
 
-import java.util.Arrays;
 import java.util.List;
 import java.util.Objects;
 
@@ -14,7 +13,7 @@ public class Cancion {
 	@Id
 	private String spotify_id;
 	private String nombre;
-	private String[] genero = new String[3];
+	private String generos;
 
 	@ManyToMany
 	private List<Artista> autores;
@@ -49,12 +48,12 @@ public class Cancion {
 		this.spotify_id = spotify_id;
 	}
 
-	public String[] getGenero() {
-		return genero;
+	public String getGenero() {
+		return generos;
 	}
 
-	public void setGenero(String[] genero) {
-		this.genero = genero;
+	public void setGenero(String genero) {
+		this.generos = genero;
 	}
 
 	public String getNombre() {
@@ -84,7 +83,7 @@ public class Cancion {
 
 	@Override
 	public String toString() {
-		return "Canción [spotify_id=" + spotify_id + ", nombre=" + nombre + ", genero=" + Arrays.toString(genero) + "]";
+		return "Canción [spotify_id=" + spotify_id + ", nombre=" + nombre + ", generos=" + generos + "]";
 	}
 
 }
