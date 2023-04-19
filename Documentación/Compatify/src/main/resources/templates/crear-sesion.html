@@ -114,23 +114,30 @@ body {
 					<h1 class="crear-sesion-text">Compatify</h1>
 				</div>
 				<h1 class="crear-sesion-text01">Regístrate gratis</h1>
-				<form action="" method="post">
+				<form th:action="@{/usuariocompatify/save}" method="post"
+					th:object="${usuariocompatify}">
 					<div class="crear-sesion-container03">
-						<span class="crear-sesion-text02">Nombre de usuario</span> <input
-							type="text" placeholder="Introduce el nombre de usuario"
-							class="crear-sesion-textinput input" />
+						<label for="nombre" class="crear-sesion-text02">Nombre de
+							usuario</label> <input type="text"
+							placeholder="Introduce el nombre de usuario"
+							class="crear-sesion-textinput input" id="nombre"
+							th:field="*{nombre}" />
 					</div>
 					<div class="crear-sesion-container04">
-						<span class="crear-sesion-text03"> ¿Cuál es tu correo
-							electrónico? </span> <input type="text"
+						<label for="email" class="crear-sesion-text03"> ¿Cuál es
+							tu correo electrónico? </label> <input type="text"
 							placeholder="Introduzca tu correo electrónico"
-							class="crear-sesion-textinput1 input" />
+							class="crear-sesion-textinput1 input" id="email"
+							th:field="*{email}" />
 					</div>
 					<div class="crear-sesion-container05">
-						<span class="crear-sesion-text04">Crea una contraseña</span> <input
-							type="text" placeholder="Introduce una contraseña"
-							class="crear-sesion-textinput2 input" />
+						<label for="contraseña" class="crear-sesion-text04">Crea
+							una contraseña</label> <input type="text"
+							placeholder="Introduce una contraseña"
+							class="crear-sesion-textinput2 input" id="contraseña"
+							th:field="*{contraseña}" />
 					</div>
+
 					<div class="crear-sesion-container06">
 						<span class="crear-sesion-text05"> ¿Cuál es tu fecha de
 							nacimiento? </span>
@@ -154,9 +161,8 @@ body {
 								<option value="11">Noviembre</option>
 								<option value="12">Diciembre</option>
 							</select> <input type="text" placeholder="DD"
-								class="crear-sesion-textinput3 input" /> <input
-								type="text" placeholder="AAAA"
-								class="crear-sesion-textinput4 input" />
+								class="crear-sesion-textinput3 input" /> <input type="text"
+								placeholder="AAAA" class="crear-sesion-textinput4 input" />
 						</div>
 					</div>
 					<div class="crear-sesion-container09">
@@ -173,15 +179,18 @@ body {
 						</span> <span>&nbsp;de uso de Compatify.</span>
 						</span>
 					</div>
-				</form>
-				<div class="crear-sesion-container10">
-					<div class="crear-sesion-get-started button">
-						<a href="perfil.html" class="crear-sesion-text14">Regístrate</a>
+
+					<div class="crear-sesion-container10">
+						<div>
+							<input type="submit" class="crear-sesion-get-started button"
+								value="Regístrate" />
+						</div>
+
+						<span class="crear-sesion-text15">¿Ya tienes cuenta?</span> <a
+							href="inicio-de-sesion.html" class="crear-sesion-text16">
+							Inicia sesión </a>
 					</div>
-					<span class="crear-sesion-text15">¿Ya tienes cuenta?</span> <a
-						href="inicio-de-sesion.html" class="crear-sesion-text16">
-						Inicia sesión </a>
-				</div>
+				</form>
 			</div>
 		</div>
 	</div>
