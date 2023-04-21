@@ -1,0 +1,198 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<title>Crear-sesion - Planical modern template</title>
+<meta property="og:title"
+	content="Crear-sesion - Planical modern template" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<meta charset="utf-8" />
+<meta property="twitter:card" content="summary_large_image" />
+
+<style data-tag="reset-style-sheet">
+html {
+	line-height: 1.15;
+}
+
+body {
+	margin: 0;
+}
+
+* {
+	box-sizing: border-box;
+	border-width: 0;
+	border-style: solid;
+}
+
+p, li, ul, pre, div, h1, h2, h3, h4, h5, h6, figure, blockquote,
+	figcaption {
+	margin: 0;
+	padding: 0;
+}
+
+button {
+	background-color: transparent;
+}
+
+button, input, optgroup, select, textarea {
+	font-family: inherit;
+	font-size: 100%;
+	line-height: 1.15;
+	margin: 0;
+}
+
+button, select {
+	text-transform: none;
+}
+
+button, [type="button"], [type="reset"], [type="submit"] {
+	-webkit-appearance: button;
+}
+
+button::-moz-focus-inner, [type="button"]::-moz-focus-inner, [type="reset"]::-moz-focus-inner,
+	[type="submit"]::-moz-focus-inner {
+	border-style: none;
+	padding: 0;
+}
+
+button:-moz-focus, [type="button"]:-moz-focus, [type="reset"]:-moz-focus,
+	[type="submit"]:-moz-focus {
+	outline: 1px dotted ButtonText;
+}
+
+a {
+	color: inherit;
+	text-decoration: inherit;
+}
+
+input {
+	padding: 2px 4px;
+}
+
+img {
+	display: block;
+}
+
+html {
+	scroll-behavior: smooth
+}
+</style>
+<style data-tag="default-style-sheet">
+html {
+	font-family: Inter;
+	font-size: 16px;
+}
+
+body {
+	font-weight: 400;
+	font-style: normal;
+	text-decoration: none;
+	text-transform: none;
+	letter-spacing: normal;
+	line-height: 1.15;
+	color: var(- -dl-color-gray-black);
+	background-color: var(- -dl-color-gray-white);
+}
+</style>
+<link rel="stylesheet"
+	href="https://fonts.googleapis.com/css2?family=Inter:wght@100;200;300;400;500;600;700;800;900&amp;display=swap"
+	data-tag="font" />
+<link rel="stylesheet"
+	href="https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&amp;display=swap"
+	data-tag="font" />
+<link rel="stylesheet" type="text/css" href="./style.css" />
+<link rel="stylesheet" type="text/css" href="./crear-sesion.css" />
+</head>
+<body>
+	<div>
+
+
+		<div class="crear-sesion-container">
+			<div class="crear-sesion-container01">
+				<div class="crear-sesion-container02">
+					<img alt="image" src="public/playground_assets/logoiis-200h.png"
+						class="crear-sesion-image" />
+					<h1 class="crear-sesion-text">Compatify</h1>
+				</div>
+				<h1 class="crear-sesion-text01">Regístrate gratis</h1>
+				<form th:action="@{/usuariocompatify/save}" method="post"
+					th:object="${usuariocompatify}">
+					<div class="crear-sesion-container03">
+						<label for="nombre" class="crear-sesion-text02">Nombre de
+							usuario</label> <input type="text"
+							placeholder="Introduce el nombre de usuario"
+							class="crear-sesion-textinput input" id="nombre"
+							th:field="*{nombre}" />
+					</div>
+					<div class="crear-sesion-container04">
+						<label for="email" class="crear-sesion-text03"> ¿Cuál es
+							tu correo electrónico? </label> <input type="text"
+							placeholder="Introduzca tu correo electrónico"
+							class="crear-sesion-textinput1 input" id="email"
+							th:field="*{email}" />
+					</div>
+					<div class="crear-sesion-container05">
+						<label for="contraseña" class="crear-sesion-text04">Crea
+							una contraseña</label> <input type="text"
+							placeholder="Introduce una contraseña"
+							class="crear-sesion-textinput2 input" id="contraseña"
+							th:field="*{contraseña}" />
+					</div>
+
+					<div class="crear-sesion-container06">
+						<span class="crear-sesion-text05"> ¿Cuál es tu fecha de
+							nacimiento? </span>
+						<div class="crear-sesion-container07">
+							<span class="crear-sesion-text06">Día</span> <span
+								class="crear-sesion-text07">Mes</span> <span
+								class="crear-sesion-text08">Año</span>
+						</div>
+						<div class="crear-sesion-container08">
+							<select class="crear-sesion-select">
+								<option value="1">Enero</option>
+								<option value="2">Febrero</option>
+								<option value="3">Marzo</option>
+								<option value="4">Abril</option>
+								<option value="5">Mayo</option>
+								<option value="6">Junio</option>
+								<option value="7">Julio</option>
+								<option value="8">Agosto</option>
+								<option value="9">Septiembre</option>
+								<option value="10">Octubre</option>
+								<option value="11">Noviembre</option>
+								<option value="12">Diciembre</option>
+							</select> <input type="text" placeholder="DD"
+								class="crear-sesion-textinput3 input" /> <input type="text"
+								placeholder="AAAA" class="crear-sesion-textinput4 input" />
+						</div>
+					</div>
+					<div class="crear-sesion-container09">
+						<span class="crear-sesion-text09">¿Cuál es tu género?</span> <select
+							class="crear-sesion-select1">
+							<option value="M">Hombre</option>
+							<option value="F">Mujer</option>
+							<option value="N">No binario</option>
+							<option value="O">Otro</option>
+							<option value="X">Prefiero no responder</option>
+						</select> <span class="crear-sesion-text10"> <span>Al hacer
+								clic en Registrarte, aceptas los</span> <span
+							class="crear-sesion-text12"> Términos y condiciones de uso
+						</span> <span>&nbsp;de uso de Compatify.</span>
+						</span>
+					</div>
+
+					<div class="crear-sesion-container10">
+						<div>
+							<input type="submit" class="crear-sesion-get-started button"
+								value="Regístrate" />
+						</div>
+
+						<span class="crear-sesion-text15">¿Ya tienes cuenta?</span> <a
+							href="inicio-de-sesion.html" class="crear-sesion-text16">
+							Inicia sesión </a>
+					</div>
+				</form>
+			</div>
+		</div>
+	</div>
+</body>
+</html>

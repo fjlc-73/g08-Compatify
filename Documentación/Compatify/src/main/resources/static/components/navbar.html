@@ -1,0 +1,108 @@
+<div>
+  <script
+    type="text/javascript"
+    src="https://unpkg.com/dangerous-html@0.1.12/dist/default/lib.umd.js"
+  ></script>
+  <link href="./navbar.css" rel="stylesheet" />
+  <nav class="navbar-navbar">
+    <img
+      alt="Planical7012"
+      src="public/playground_assets/planical7012-wzf.svg"
+      class="navbar-branding-logo"
+    />
+    <div class="navbar-nav-content">
+      <div class="navbar-nav-links">
+        <a href="#caracteristicas" class="navbar-link nav-link">
+          Características
+        </a>
+        <a href="#quienesomos" class="navbar-link1 nav-link">Quiénes somos</a>
+        <a href="#contacto" class="navbar-link2 nav-link">Contacto</a>
+      </div>
+      <a href="inicio-de-sesion.html" class="navbar-navlink">
+        <div class="navbar-get-started get-started">
+          <span class="navbar-text">Identifícate</span>
+        </div>
+      </a>
+      <div id="open-mobile-menu" class="navbar-hamburger get-started">
+        <img
+          alt="image"
+          src="public/playground_assets/hamburger-200h.png"
+          class="navbar-image"
+        />
+      </div>
+    </div>
+    <div id="mobile-menu" class="navbar-mobile-menu">
+      <div class="navbar-branding">
+        <img
+          alt="image"
+          src="public/playground_assets/planical7012-ttpb.svg"
+          class="navbar-image1"
+        />
+        <div id="close-mobile-menu" class="navbar-container">
+          <svg viewBox="0 0 1024 1024" class="navbar-icon">
+            <path
+              d="M225.835 286.165l225.835 225.835-225.835 225.835c-16.683 16.683-16.683 43.691 0 60.331s43.691 16.683 60.331 0l225.835-225.835 225.835 225.835c16.683 16.683 43.691 16.683 60.331 0s16.683-43.691 0-60.331l-225.835-225.835 225.835-225.835c16.683-16.683 16.683-43.691 0-60.331s-43.691-16.683-60.331 0l-225.835 225.835-225.835-225.835c-16.683-16.683-43.691-16.683-60.331 0s-16.683 43.691 0 60.331z"
+            ></path>
+          </svg>
+        </div>
+      </div>
+      <div class="navbar-nav-links1">
+        <span class="nav-link">Features</span>
+        <span class="nav-link">Why us</span>
+        <span class="nav-link">Prices</span>
+        <span class="nav-link">Contact</span>
+      </div>
+      <div class="get-started">
+        <span class="navbar-text1">Get started</span>
+      </div>
+    </div>
+    <div>
+      <dangerous-html
+        html="<script>
+    /*
+Mobile menu - Code Embed
+*/
+
+/* listenForUrlChangesMobileMenu() makes sure that if you changes pages inside your app, 
+the mobile menu will still work*/
+
+const listenForUrlChangesMobileMenu = () => {
+    let url = location.href;
+    document.body.addEventListener('click', () => {
+        requestAnimationFrame(() => {
+            if (url !== location.href) {
+                runMobileMenuCodeEmbed();
+                url = location.href;
+            }
+        });
+    },
+    true
+    );
+};
+
+const runMobileMenuCodeEmbed = () => {
+    // Mobile menu
+    const mobileMenu = document.querySelector('#mobile-menu')
+
+    // Buttons
+    const closeButton = document.querySelector('#close-mobile-menu')
+    const openButton = document.querySelector('#open-mobile-menu')
+
+    // On openButton click, set the mobileMenu position left to -100vw
+    openButton && openButton.addEventListener('click', function() {
+        mobileMenu.style.transform = 'translateX(0%)'
+    })
+
+    // On closeButton click, set the mobileMenu position to 0vw
+    closeButton && closeButton.addEventListener('click', function() {
+        mobileMenu.style.transform = 'translateX(100%)'
+    })
+}
+
+runMobileMenuCodeEmbed()
+listenForUrlChangesMobileMenu()
+</script>"
+      ></dangerous-html>
+    </div>
+  </nav>
+</div>

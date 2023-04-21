@@ -1,0 +1,11 @@
+.component-container {
+  display: flex;
+  position: relative;
+}
+.component-form {
+  width: 200px;
+  height: 83px;
+  display: flex;
+  padding-left: var(--dl-space-space-threeunits);
+  background-color: #D9D9D9;
+}
