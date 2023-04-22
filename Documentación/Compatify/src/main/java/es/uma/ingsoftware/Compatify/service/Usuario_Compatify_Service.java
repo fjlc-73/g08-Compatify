@@ -17,5 +17,9 @@ public class Usuario_Compatify_Service {
 		
 	}
 
+	public Usuario_Compatify getById(String nombre) {
+		return usuarioCompatifyRepository.getReferenceById(nombre);
+	}
+
 	
 }
