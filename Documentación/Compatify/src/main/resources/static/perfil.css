@@ -71,7 +71,7 @@
   flex-direction: column;
   justify-content: flex-start;
 }
-.perfil-navlink1 {
+.perfil-navlink01 {
   color: rgb(255, 255, 255);
   font-size: 15px;
   align-self: stretch;
@@ -84,7 +84,7 @@
   border-left-width: 0px;
   border-right-width: 0px;
 }
-.perfil-navlink2 {
+.perfil-navlink02 {
   color: #ffffff;
   font-size: 15px;
   align-self: stretch;
@@ -97,7 +97,7 @@
   border-left-width: 0px;
   border-right-width: 0px;
 }
-.perfil-navlink3 {
+.perfil-navlink03 {
   color: rgb(255, 255, 255);
   font-size: 15px;
   align-self: stretch;
@@ -110,7 +110,7 @@
   border-left-width: 0px;
   border-right-width: 0px;
 }
-.perfil-navlink4 {
+.perfil-navlink04 {
   color: rgb(255, 255, 255);
   font-size: 15px;
   align-self: stretch;
@@ -123,7 +123,7 @@
   border-left-width: 0px;
   border-right-width: 0px;
 }
-.perfil-navlink5 {
+.perfil-navlink05 {
   color: rgb(255, 255, 255);
   font-size: 15px;
   align-self: stretch;
@@ -136,7 +136,20 @@
   border-left-width: 0px;
   border-right-width: 0px;
 }
-.perfil-navlink6 {
+.perfil-navlink06 {
+  color: rgb(255, 255, 255);
+  font-size: 15px;
+  align-self: stretch;
+  text-align: center;
+  font-family: Poppins;
+  line-height: 4;
+  border-color: #ffffff;
+  border-width: 1px;
+  text-decoration: none;
+  border-left-width: 0px;
+  border-right-width: 0px;
+}
+.perfil-navlink07 {
   color: rgb(255, 255, 255);
   font-size: 15px;
   align-self: stretch;
@@ -150,7 +163,7 @@
   border-right-width: 0px;
 }
 .perfil-container05 {
-  top: 832px;
+  top: 700px;
   left: 220px;
   right: 4px;
   width: 1005px;
@@ -162,7 +175,7 @@
   flex-direction: column;
   justify-content: flex-start;
 }
-.perfil-text02 {
+.perfil-text04 {
   line-height: 4;
 }
 .perfil-container06 {
@@ -179,16 +192,16 @@
   border-left-width: 0px;
   border-right-width: 0px;
 }
-.perfil-text03 {
+.perfil-text05 {
   color: #656565;
   font-size: 20px;
   align-self: center;
   font-family: Poppins;
 }
-.perfil-text05 {
+.perfil-text07 {
   line-height: 3;
 }
-.perfil-text06 {
+.perfil-text08 {
   top: 26px;
   left: 440px;
   color: rgb(0, 0, 0);
@@ -212,16 +225,16 @@
   border-left-width: 0px;
   border-right-width: 0px;
 }
-.perfil-text07 {
+.perfil-text09 {
   color: rgb(101, 101, 101);
   font-size: 20px;
   align-self: center;
   font-family: Poppins;
 }
-.perfil-text09 {
+.perfil-text11 {
   line-height: 3;
 }
-.perfil-text10 {
+.perfil-text12 {
   top: 26px;
   left: 440px;
   color: rgb(0, 0, 0);
@@ -245,13 +258,13 @@
   border-left-width: 0px;
   border-right-width: 0px;
 }
-.perfil-text11 {
+.perfil-text13 {
   color: rgb(101, 101, 101);
   font-size: 20px;
   align-self: center;
   font-family: Poppins;
 }
-.perfil-text12 {
+.perfil-text14 {
   top: 26px;
   left: 440px;
   color: rgb(0, 0, 0);
@@ -260,12 +273,12 @@
   align-self: center;
   font-family: Poppins;
 }
-.perfil-navlink7 {
+.perfil-navlink08 {
   display: contents;
 }
 .perfil-get-started {
-  top: 338px;
-  left: 22px;
+  top: 337px;
+  left: 21px;
   height: 51px;
   display: flex;
   position: absolute;
@@ -276,7 +289,7 @@
   text-decoration: none;
   background-color: #ffffff;
 }
-.perfil-text13 {
+.perfil-text15 {
   color: rgb(12, 16, 12);
   font-size: 16px;
   font-style: normal;
@@ -310,7 +323,7 @@
   left: 220px;
   color: var(--dl-color-gray-black);
   width: 1005px;
-  height: 649px;
+  height: 533px;
   display: flex;
   position: absolute;
   align-self: flex-end;
@@ -324,11 +337,11 @@
   flex-direction: column;
   justify-content: flex-start;
 }
-.perfil-text14 {
+.perfil-text16 {
   font-size: 60px;
   font-family: Poppins;
 }
-.perfil-text15 {
+.perfil-text17 {
   line-height: 4;
 }
 .perfil-container12 {
@@ -345,16 +358,16 @@
   border-left-width: 0px;
   border-right-width: 0px;
 }
-.perfil-text16 {
+.perfil-text18 {
   color: #656565;
   font-size: 20px;
   align-self: center;
   font-family: Poppins;
 }
-.perfil-text18 {
+.perfil-text20 {
   line-height: 3;
 }
-.perfil-text19 {
+.perfil-text21 {
   top: 26px;
   left: 440px;
   color: rgb(0, 0, 0);
@@ -378,16 +391,16 @@
   border-left-width: 0px;
   border-right-width: 0px;
 }
-.perfil-text20 {
+.perfil-text22 {
   color: rgb(101, 101, 101);
   font-size: 20px;
   align-self: center;
   font-family: Poppins;
 }
-.perfil-text22 {
+.perfil-text24 {
   line-height: 3;
 }
-.perfil-text23 {
+.perfil-text25 {
   top: 26px;
   left: 440px;
   color: rgb(0, 0, 0);
@@ -411,16 +424,16 @@
   border-left-width: 0px;
   border-right-width: 0px;
 }
-.perfil-text24 {
+.perfil-text26 {
   color: rgb(101, 101, 101);
   font-size: 20px;
   align-self: center;
   font-family: Poppins;
 }
-.perfil-text26 {
+.perfil-text28 {
   line-height: 3;
 }
-.perfil-text27 {
+.perfil-text29 {
   top: 26px;
   left: 440px;
   color: rgb(0, 0, 0);
@@ -443,13 +456,13 @@
   border-left-width: 0px;
   border-right-width: 0px;
 }
-.perfil-text28 {
+.perfil-text30 {
   color: rgb(101, 101, 101);
   font-size: 20px;
   align-self: center;
   font-family: Poppins;
 }
-.perfil-text29 {
+.perfil-text31 {
   top: 26px;
   left: 440px;
   color: rgb(0, 0, 0);
@@ -458,12 +471,12 @@
   align-self: center;
   font-family: Poppins;
 }
-.perfil-navlink8 {
+.perfil-navlink09 {
   display: contents;
 }
 .perfil-get-started1 {
-  top: 503px;
-  left: 22px;
+  left: 21px;
+  bottom: 11px;
   height: 51px;
   display: flex;
   position: absolute;
@@ -474,7 +487,7 @@
   text-decoration: none;
   background-color: #ffffff;
 }
-.perfil-text30 {
+.perfil-text32 {
   color: rgb(12, 16, 12);
   font-size: 16px;
   font-style: normal;

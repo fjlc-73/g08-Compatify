@@ -12,6 +12,8 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 
+import org.springframework.web.bind.annotation.ModelAttribute;
+
 import org.springframework.web.bind.annotation.PathVariable;
 
 import org.springframework.util.LinkedMultiValueMap;
@@ -50,10 +52,11 @@ public class Usuario_Compatify_Controller {
 		this.restTemplate = restTemplate;
 	}
 	
-	@RequestMapping("/crear-sesion")
+
+	@RequestMapping("/crear-cuenta")
 	public String addUsuarioCompatify (Model model) {
 		model.addAttribute("usuariocompatify", new Usuario_Compatify());
-		return "crear-sesion";
+		return "crear-cuenta";
 	}
 	
 	@PostMapping("/usuariocompatify/save") //post ejecutado en crear-sesion
@@ -70,11 +73,39 @@ public class Usuario_Compatify_Controller {
 		return "perfil"; 
 	}
 
+
 	@RequestMapping("/perfil")
 	public String pruebaperfil (Model model) { 
 		return "perfil"; //esto no debería estar aquí 
 
 	}
+
+
+	
+	@RequestMapping("/terminos-y-condiciones")
+	public String terminos(){
+		return "terminos-y-condiciones";
+	}
+	
+	@RequestMapping("/inicio-de-sesion")
+	public String iniciosesion (Model model) {
+		model.addAttribute("usuariocompatify", new Usuario_Compatify());
+		return "inicio-de-sesion";
+	}
+	
+	
+	@PostMapping("/login") //post ejecutado en iniciar-sesion
+	public String checkUsuarioCompatify(@ModelAttribute(name="loginForm") Usuario_Compatify uc, Model m) {
+		String inputUsername = uc.getNombre();
+		String inputPassword = uc.getContraseña();
+		Usuario_Compatify realUser = usuarioCompatifyService.getById(inputUsername);
+		if(realUser!=null && inputPassword.equals(realUser.getContraseña())) {
+			return "redirect:/perfil/"+realUser.getNombre();
+		}
+		m.addAttribute("error", "Usuario o contraseña incorrectos");
+		return "inicio-de-sesion";
+	}
+	
 
 	@RequestMapping("/login.html")//Se ejecuta al acceder a la página login.html
 	public void login(HttpServletRequest request, HttpServletResponse response) throws IOException {

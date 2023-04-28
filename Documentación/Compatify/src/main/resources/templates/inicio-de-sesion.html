@@ -69,26 +69,31 @@
             <h1 class="inicio-de-sesion-text">Compatify</h1>
           </div>
           <h1 class="inicio-de-sesion-text1">Inicio de sesión</h1>
+          <form th:action="@{/login}" method="post"
+					th:object="${loginForm}">
           <div class="inicio-de-sesion-container3">
             <span class="inicio-de-sesion-text2">Usuario</span>
             <input
               type="text"
               placeholder="Introduce tu nombre de usuario"
               class="inicio-de-sesion-textinput input"
-            />
+              name="nombre"
+            >
           </div>
           <div class="inicio-de-sesion-container4">
             <span class="inicio-de-sesion-text3">Contraseña</span>
             <input
-              type="text"
+              type="password"
               placeholder="Introduce la contraseña"
               class="inicio-de-sesion-textinput1 input"
-            />
+              name="contraseña"
+            >
           </div>
           <div class="inicio-de-sesion-container5">
-            <div class="inicio-de-sesion-get-started button">
-              <a href="perfil.html" class="inicio-de-sesion-text4">Aceptar</a>
-            </div>
+              <input type="submit" class="inicio-de-sesion-get-started button" value="Aceptar">
+              </div>
+              <p th:if="${error}" class="error"> Usuario o contraseña incorrectos</p>
+            </form>
             <span class="inicio-de-sesion-text5">
               ¿Se te ha olvidado la contraseña?
             </span>
@@ -98,7 +103,7 @@
           </div>
           <div class="inicio-de-sesion-container6">
             <h1 class="inicio-de-sesion-text6">¿No tienes cuenta?</h1>
-            <a href="crear-sesion.html" class="inicio-de-sesion-navlink1">
+            <a href="crear-cuenta.html" class="inicio-de-sesion-navlink2">
               <div class="inicio-de-sesion-get-started1 button">
                 <span class="inicio-de-sesion-text7">
                   Subscríbete a Compatify

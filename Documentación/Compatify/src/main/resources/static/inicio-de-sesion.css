@@ -120,6 +120,9 @@
   align-items: flex-start;
   flex-direction: column;
 }
+.inicio-de-sesion-navlink1 {
+  display: contents;
+}
 .inicio-de-sesion-get-started {
   height: 45px;
   display: flex;
@@ -129,6 +132,7 @@
   align-items: center;
   margin-left: 0px;
   justify-content: center;
+  text-decoration: none;
   background-color: #00bb65;
 }
 .inicio-de-sesion-text4 {
@@ -139,7 +143,6 @@
   font-family: Poppins;
   font-weight: 500;
   line-height: 24px;
-  text-decoration: none;
 }
 .inicio-de-sesion-text5 {
   color: #000000;
@@ -173,7 +176,7 @@
   margin-top: 30px;
   text-align: center;
 }
-.inicio-de-sesion-navlink1 {
+.inicio-de-sesion-navlink2 {
   display: contents;
 }
 .inicio-de-sesion-get-started1 {

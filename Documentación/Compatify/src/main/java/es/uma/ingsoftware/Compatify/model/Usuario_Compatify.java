@@ -1,5 +1,6 @@
 package es.uma.ingsoftware.Compatify.model;
 
+import java.util.Date;
 import java.util.List;
 import java.util.Objects;
 
@@ -15,7 +16,11 @@ public class Usuario_Compatify {
 	private String nombre;
 	private String email;
 	private String contraseña;
+	private String genero;
+	private Date fechanacimiento;
 	private boolean cuenta_privada;
+	
+	
 
 	@OneToOne
 	private Usuario_Spotify usuarioSpotify;
@@ -33,6 +38,23 @@ public class Usuario_Compatify {
 
 	public void setUsuarioSpotify(Usuario_Spotify usuarioSpotify) {
 		this.usuarioSpotify = usuarioSpotify;
+	}
+	
+
+	public String getGenero() {
+		return genero;
+	}
+
+	public void setGenero(String genero) {
+		this.genero = genero;
+	}
+
+	public Date getFechanacimiento() {
+		return fechanacimiento;
+	}
+
+	public void setFechanacimiento(Date fechanacimiento) {
+		this.fechanacimiento = fechanacimiento;
 	}
 
 	public List<Usuario_Compatify> getAmigos() {
@@ -94,8 +116,11 @@ public class Usuario_Compatify {
 
 	@Override
 	public String toString() {
-		return "Usuario_Compatify [nombre=" + nombre + ", email=" + email + ", contraseña=" + contraseña
-				+ ", cuenta_privada=" + cuenta_privada + "]";
+		return "Usuario_Compatify [nombre=" + nombre + ", email=" + email + ", contraseña=" + contraseña + ", genero="
+				+ genero + ", fechanacimiento=" + fechanacimiento + ", cuenta_privada=" + cuenta_privada
+				+ ", usuarioSpotify=" + usuarioSpotify + ", amigos=" + amigos + "]";
 	}
+
+
 
 }
