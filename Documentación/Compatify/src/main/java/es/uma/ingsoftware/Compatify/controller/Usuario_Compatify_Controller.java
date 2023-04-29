@@ -32,6 +32,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import es.uma.ingsoftware.Compatify.model.Usuario_Compatify;
 import es.uma.ingsoftware.Compatify.service.Usuario_Compatify_Service;
 import jakarta.persistence.Entity;
+import jakarta.persistence.EntityNotFoundException;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
 
@@ -94,12 +95,18 @@ public class Usuario_Compatify_Controller {
 	}
 	
 	
-	@PostMapping("/login") //post ejecutado en iniciar-sesion
+	@PostMapping("/checkpassword") //post ejecutado en iniciar-sesion
 	public String checkUsuarioCompatify(@ModelAttribute(name="loginForm") Usuario_Compatify uc, Model m) {
 		String inputUsername = uc.getNombre();
 		String inputPassword = uc.getContraseña();
+		String realPassword = "???";
 		Usuario_Compatify realUser = usuarioCompatifyService.getById(inputUsername);
-		if(realUser!=null && inputPassword.equals(realUser.getContraseña())) {
+		try {
+			realPassword = realUser.getContraseña();
+		} catch(EntityNotFoundException e) {
+			realUser=null;
+		}
+		if(realUser!=null && inputPassword.equals(realPassword)) {
 			return "redirect:/perfil/"+realUser.getNombre();
 		}
 		m.addAttribute("error", "Usuario o contraseña incorrectos");
