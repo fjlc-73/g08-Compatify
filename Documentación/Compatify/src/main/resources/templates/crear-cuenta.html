@@ -7,7 +7,6 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0" />
 <meta charset="utf-8" />
 <meta property="twitter:card" content="summary_large_image" />
-
 <style data-tag="reset-style-sheet">
 html {
 	line-height: 1.15;
@@ -137,7 +136,6 @@ body {
 							class="crear-cuenta-textinput2 input" id="contraseña"
 							th:field="*{contraseña}" />
 					</div>
-
 					<div class="crear-cuenta-container06">
 						<span class="crear-cuenta-text05"> ¿Cuál es tu fecha de
 							nacimiento? </span>
@@ -146,8 +144,9 @@ body {
 								class="crear-cuenta-text07">Mes</span> <span
 								class="crear-cuenta-text08">Año</span>
 						</div>
+						
 						<div class="crear-cuenta-container08">
-							<select class="crear-cuenta-select" th:field="fechanacimiento.Month">
+							<select name="month" class="crear-cuenta-select">
 								<option th:value="1">Enero</option>
 								<option th:value="2">Febrero</option>
 								<option th:value="3">Marzo</option>
@@ -160,9 +159,9 @@ body {
 								<option th:value="10">Octubre</option>
 								<option th:value="11">Noviembre</option>
 								<option th:value="12">Diciembre</option>
-							</select> <input type="text" placeholder="DD"
-								class="crear-cuenta-textinput3 input" th:field="*{fechanacimiento.Day}"/> <input type="text"
-								placeholder="AAAA" class="crear-cuenta-textinput4 input" th:field="*{fechanacimiento.Year}"/>
+							</select> <input name="day" type="text" placeholder="DD"
+								class="crear-cuenta-textinput3 input"/> <input name="year" type="text"
+								placeholder="AAAA" class="crear-cuenta-textinput4 input"/> 
 						</div>
 					</div>
 					<div class="crear-cuenta-container09">
@@ -170,9 +169,9 @@ body {
 							class="crear-cuenta-select1" th:field="*{genero}">
 							<option th:value="Hombre">Hombre</option>
 							<option th:value="Mujer">Mujer</option>
-							<option th:value="No-binario">No binario</option>
+							<option th:value="'No binario'">No binario</option>
 							<option th:value="Otro">Otro</option>
-							<option th:value="Prefiero-no-responder">Prefiero no responder</option>
+							<option th:value="'Prefiero no responder'">Prefiero no responder</option>
 						</select> <a href="terminos-y-condiciones" class="crear-cuenta-navlink">
 							<span>Al hacer clic en Registrarte, aceptas los</span> <span
 							class="crear-cuenta-text11"> Términos y condiciones de uso

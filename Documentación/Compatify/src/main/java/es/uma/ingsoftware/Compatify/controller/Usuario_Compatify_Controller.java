@@ -1,6 +1,7 @@
 package es.uma.ingsoftware.Compatify.controller;
 
 import java.io.IOException;
+import java.util.Date;
 import java.util.Random;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -34,6 +35,7 @@ import es.uma.ingsoftware.Compatify.service.Usuario_Compatify_Service;
 import jakarta.persistence.Entity;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
+import jakarta.servlet.http.HttpSession;
 
 @Controller
 public class Usuario_Compatify_Controller {
@@ -60,23 +62,21 @@ public class Usuario_Compatify_Controller {
 	}
 	
 	@PostMapping("/usuariocompatify/save") //post ejecutado en crear-sesion
-	public String saveUsuarioCompatify(Usuario_Compatify uc) {
+	public String saveUsuarioCompatify(@RequestParam("month") int month, @RequestParam("day") int day, @RequestParam("year") int year, 
+			Usuario_Compatify uc, Model model) {
+		uc.setFechanacimiento(new Date(year-1900,month-1,day));//Esta clase Date que se usa en Usuario_Compatify parece que está en desuso
 		usuarioCompatifyService.save(uc);
-		return "redirect:/perfil/"+uc.getNombre();
-	}
-	
-	
-
-	@RequestMapping("/perfil/{nombre}")
-	public String viewUsuarioCompatify (@PathVariable("nombre") String nombre, Model model) {
-		model.addAttribute("usuarioperfil", usuarioCompatifyService.getById(nombre));
-		return "perfil"; 
+		model.addAttribute("usuarioperfil", uc);
+		return "redirect:/inicio-de-sesion";
 	}
 
 
 	@RequestMapping("/perfil")
-	public String pruebaperfil (Model model) { 
-		return "perfil"; //esto no debería estar aquí 
+	public String pruebaperfil (HttpServletRequest request, Model model) {
+		HttpSession session = request.getSession();
+	    String userName = (String) session.getAttribute("userName");
+		model.addAttribute("usuarioperfil", usuarioCompatifyService.getById(userName));
+		return "perfil";
 
 	}
 
@@ -89,18 +89,19 @@ public class Usuario_Compatify_Controller {
 	
 	@RequestMapping("/inicio-de-sesion")
 	public String iniciosesion (Model model) {
-		model.addAttribute("usuariocompatify", new Usuario_Compatify());
 		return "inicio-de-sesion";
 	}
 	
 	
 	@PostMapping("/login") //post ejecutado en iniciar-sesion
-	public String checkUsuarioCompatify(@ModelAttribute(name="loginForm") Usuario_Compatify uc, Model m) {
+	public String checkUsuarioCompatify(HttpServletRequest request, @ModelAttribute(name="loginForm") Usuario_Compatify uc, Model m) {
 		String inputUsername = uc.getNombre();
 		String inputPassword = uc.getContraseña();
-		Usuario_Compatify realUser = usuarioCompatifyService.getById(inputUsername);
-		if(realUser!=null && inputPassword.equals(realUser.getContraseña())) {
-			return "redirect:/perfil/"+realUser.getNombre();
+		Usuario_Compatify realUser = usuarioCompatifyService.getById(inputUsername);//Este método revienta si el usuario no está en la base de datos
+		if(realUser!=null && inputPassword.equals(realUser.getContraseña())) {	
+			HttpSession session = request.getSession();
+			session.setAttribute("userName", inputUsername);//El usuario que ha iniciado sesión se guarda para poder recuperarlo en otros métodos
+			return "redirect:/perfil";
 		}
 		m.addAttribute("error", "Usuario o contraseña incorrectos");
 		return "inicio-de-sesion";
