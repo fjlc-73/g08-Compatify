@@ -33,6 +33,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import es.uma.ingsoftware.Compatify.model.Usuario_Compatify;
 import es.uma.ingsoftware.Compatify.service.Usuario_Compatify_Service;
 import jakarta.persistence.Entity;
+import jakarta.persistence.EntityNotFoundException;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
 import jakarta.servlet.http.HttpSession;
@@ -93,12 +94,18 @@ public class Usuario_Compatify_Controller {
 	}
 	
 	
-	@PostMapping("/login") //post ejecutado en iniciar-sesion
+	@PostMapping("/checkpassword") //post ejecutado en iniciar-sesion
 	public String checkUsuarioCompatify(HttpServletRequest request, @ModelAttribute(name="loginForm") Usuario_Compatify uc, Model m) {
 		String inputUsername = uc.getNombre();
 		String inputPassword = uc.getContraseña();
-		Usuario_Compatify realUser = usuarioCompatifyService.getById(inputUsername);//Este método revienta si el usuario no está en la base de datos
-		if(realUser!=null && inputPassword.equals(realUser.getContraseña())) {	
+		String realPassword = "???";
+		Usuario_Compatify realUser = usuarioCompatifyService.getById(inputUsername);
+		try {
+			realPassword = realUser.getContraseña();
+		} catch(EntityNotFoundException e) {
+			realUser=null;
+		}
+		if(realUser!=null && inputPassword.equals(realPassword)) {
 			HttpSession session = request.getSession();
 			session.setAttribute("userName", inputUsername);//El usuario que ha iniciado sesión se guarda para poder recuperarlo en otros métodos
 			return "redirect:/perfil";
