@@ -99,7 +99,9 @@ public class Usuario_Compatify_Controller {
 		String inputUsername = uc.getNombre();
 		String inputPassword = uc.getContraseña();
 		String realPassword = "???";
+
 		Usuario_Compatify realUser = usuarioCompatifyService.getById(inputUsername);
+
 		try {
 			realPassword = realUser.getContraseña();
 		} catch(EntityNotFoundException e) {
@@ -187,7 +189,7 @@ public class Usuario_Compatify_Controller {
 			HttpEntity<String> entityArt = new HttpEntity<>(headersArt);
 
 			// Realizar la petición GET a la API de Spotify
-			String urlArt = "https://api.spotify.com/v1/me/top/artists?time_range=long_term&limit=20";
+			String urlArt = "https://api.spotify.com/v1/me/top/artists?time_range=long_term&limit=50";
 			String responseArt = restTemplate.exchange(urlArt, HttpMethod.GET,  entityArt, String.class).getBody();
 
 
@@ -206,7 +208,7 @@ public class Usuario_Compatify_Controller {
 			HttpEntity<String> entityTra = new HttpEntity<>(headersTra);
 
 			// Realizar la petición GET a la API de Spotify
-			String urlTra = "https://api.spotify.com/v1/me/top/tracks?time_range=long_term&limit=20";
+			String urlTra = "https://api.spotify.com/v1/me/top/tracks?time_range=long_term&limit=50";
 			String responseTra = restTemplate.exchange(urlTra, HttpMethod.GET,  entityTra, String.class).getBody();
 
 
