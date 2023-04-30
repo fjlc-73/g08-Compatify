@@ -30,6 +30,27 @@
         background-color: var(--dl-color-gray-white);
 
       }
+
+.alert {
+	padding: 20px;
+	background-color: #f44336;
+	color: white;
+}
+
+.closebtn {
+	margin-left: 15px;
+	color: white;
+	font-weight: bold;
+	float: right;
+	font-size: 22px;
+	line-height: 20px;
+	cursor: pointer;
+	transition: 0.3s;
+}
+
+.closebtn:hover {
+	color: black;
+}
     </style>
     <link
       rel="stylesheet"
@@ -54,10 +75,12 @@
               &nbsp; Cambiar la contraseña
             </h1>
           </div>
+          <form th:action="@{/cambiarcontraseña}" method="post">
           <div class="cambio-de-contrasea-container03">
             <span class="cambio-de-contrasea-text01">Contraseña actual</span>
             <input
-              type="text"
+              type="password"
+              name="actual"
               placeholder="Introduce la contraseña actual"
               class="cambio-de-contrasea-textinput input"
             />
@@ -65,7 +88,8 @@
           <div class="cambio-de-contrasea-container04">
             <span class="cambio-de-contrasea-text02">Nueva contraseña</span>
             <input
-              type="text"
+              type="password"
+              name="nueva1"
               placeholder="Introduce la nueva contraseña"
               class="cambio-de-contrasea-textinput1 input"
             />
@@ -75,25 +99,25 @@
               Repetir nueva contraseña
             </span>
             <input
-              type="text"
+              type="password"
+              name="nueva2"
               placeholder="Introduce la nueva contraseña "
               class="cambio-de-contrasea-textinput2 input"
             />
           </div>
           <div class="cambio-de-contrasea-container06">
-            <a href="editar-perfil.html" class="cambio-de-contrasea-navlink">
-              <div class="cambio-de-contrasea-get-started button">
-                <span class="cambio-de-contrasea-text04">
-                  Establecer nueva contraseña
-                </span>
-              </div>
-            </a>
+              <input type="submit" class="cambio-de-contrasea-get-started button" value="Establecer nueva contraseña" />
             <a href="editar-perfil.html" class="cambio-de-contrasea-navlink1">
               <div class="cambio-de-contrasea-get-started1 button">
                 <span class="cambio-de-contrasea-text05">Cancelar</span>
               </div>
             </a>
           </div>
+        	<p th:if="${error}" class="alert">
+			Datos incorrectos <span class="closebtn"
+			onclick="this.parentElement.style.display='none';">&times;</span>
+			</p>
+          </form>
         </div>
         <div class="cambio-de-contrasea-container07">
           <img
@@ -103,7 +127,7 @@
           />
           <div class="cambio-de-contrasea-container08"></div>
           <div class="cambio-de-contrasea-container09">
-            <a href="perfil.html" class="cambio-de-contrasea-navlink2">
+            <a href="perfil" class="cambio-de-contrasea-navlink2">
               General
             </a>
             <a href="amigos.html" class="cambio-de-contrasea-navlink3">
@@ -134,7 +158,7 @@
             <a href="notificaciones.html" class="cambio-de-contrasea-navlink7">
               Notificaciones
             </a>
-            <a href="cerrar-sesion.html" class="cambio-de-contrasea-navlink8">
+            <a href="cerrar-sesion" class="cambio-de-contrasea-navlink8">
               Cerrar sesión
             </a>
           </div>

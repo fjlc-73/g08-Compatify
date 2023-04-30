@@ -8,6 +8,7 @@ import org.springframework.http.HttpHeaders;
 import org.springframework.http.HttpMethod;
 import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
+import org.springframework.stereotype.Controller;
 import org.springframework.util.LinkedMultiValueMap;
 import org.springframework.util.MultiValueMap;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -22,6 +23,7 @@ import es.uma.ingsoftware.Compatify.service.Usuario_Spotify_Service;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
 
+@Controller
 public class Usuario_Spotify_Controller {
 	private final String CLIENT_ID = "1cc301f313604c8f9cbcbf59be7f4561";
 	private final String REDIRECT_URI = "http://localhost:8080/callback";

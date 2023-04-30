@@ -63,17 +63,17 @@
             <a href="actualizar-cuenta.html" class="perfil-navlink03">
               Actualizar cuenta
             </a>
-            <a href="cambio-de-contrasea.html" class="perfil-navlink04">
+            <a href="cambio-de-contrasea" class="perfil-navlink04">
               Cambiar contraseña
             </a>
             <a href="notificaciones.html" class="perfil-navlink05">
               Notificaciones
             </a>
-            <a href="cerrar-sesion.html" class="perfil-navlink06">
+            <a href="cerrar-sesion" class="perfil-navlink06">
               <span>Cerrar sesión</span>
               <br />
             </a>
-            <a href="index.html" class="perfil-navlink07">
+            <a href="/" class="perfil-navlink07">
               <span>Página de inicio</span>
               <br />
             </a>
@@ -133,7 +133,7 @@
                 <span>&nbsp; &nbsp;</span>
                 <span class="perfil-text28">Fecha de nacimiento</span>
               </span>
-              <span class="perfil-text29" th:text="${usuarioperfil.fechanacimiento}">fecha de nacimiento</span>
+              <span class="perfil-text29" th:text="${#dates.format(usuarioperfil.fechanacimiento, 'dd/MM/yyyy')}">fecha de nacimiento</span>
             </div>
             <div class="perfil-container15">
               <span class="perfil-text30">&nbsp; &nbsp;Género</span>
