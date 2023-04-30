@@ -74,6 +74,27 @@ img {
 html {
 	scroll-behavior: smooth
 }
+
+.alert {
+	padding: 20px;
+	background-color: #f44336;
+	color: white;
+}
+
+.closebtn {
+	margin-left: 15px;
+	color: white;
+	font-weight: bold;
+	float: right;
+	font-size: 22px;
+	line-height: 20px;
+	cursor: pointer;
+	transition: 0.3s;
+}
+
+.closebtn:hover {
+	color: black;
+}
 </style>
 <style data-tag="default-style-sheet">
 html {
@@ -113,7 +134,11 @@ body {
 					<h1 class="crear-cuenta-text">Compatify</h1>
 				</div>
 				<h1 class="crear-cuenta-text01">Regístrate gratis</h1>
-				<form th:action="@{/usuariocompatify/save}" method="post"
+				<p th:if="${error}" class="alert">
+						Nombre de usuario ya usado por otra cuenta <span class="closebtn"
+							onclick="this.parentElement.style.display='none';">&times;</span>
+						</p>
+				<form th:action="@{/save}" method="post"
 					th:object="${usuariocompatify}">
 					<div class="crear-cuenta-container03">
 						<label for="nombre" class="crear-cuenta-text02">Nombre de
@@ -178,9 +203,13 @@ body {
 						</span> <span>&nbsp;de uso de Compatify.</span>
 						</a>
 					</div>
+					
 
 					<div class="crear-cuenta-container10">
 						<div>
+						
+						
+					
 							<input type="submit" class="crear-cuenta-get-started button"
 								value="Regístrate" />
 						</div>

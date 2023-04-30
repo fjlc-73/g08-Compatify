@@ -4,13 +4,16 @@ import java.util.Date;
 import java.util.List;
 import java.util.Objects;
 
+import org.springframework.data.domain.Persistable;
+
 import jakarta.persistence.Entity;
 import jakarta.persistence.Id;
 import jakarta.persistence.ManyToMany;
 import jakarta.persistence.OneToOne;
+import jakarta.persistence.Transient;
 
 @Entity
-public class Usuario_Compatify {
+public class Usuario_Compatify implements Persistable<String> {
 
 	@Id
 	private String nombre;
@@ -19,8 +22,9 @@ public class Usuario_Compatify {
 	private String genero;
 	private Date fechanacimiento;
 	private boolean cuenta_privada;
-	
-	
+
+	@Transient
+	private boolean isNew = true;
 
 	@OneToOne
 	private Usuario_Spotify usuarioSpotify;
@@ -39,7 +43,6 @@ public class Usuario_Compatify {
 	public void setUsuarioSpotify(Usuario_Spotify usuarioSpotify) {
 		this.usuarioSpotify = usuarioSpotify;
 	}
-	
 
 	public String getGenero() {
 		return genero;
@@ -124,6 +127,18 @@ public class Usuario_Compatify {
 				+ ", usuarioSpotify=" + usuarioSpotify + ", amigos=" + amigos + "]";
 	}
 
+	@Override
+	public String getId() {
+		return nombre;
+	}
 
+	@Override
+	public boolean isNew() {
+		return isNew;
+	}
+
+	public void markNotNew() {
+		this.isNew = false;
+	}
 
 }
