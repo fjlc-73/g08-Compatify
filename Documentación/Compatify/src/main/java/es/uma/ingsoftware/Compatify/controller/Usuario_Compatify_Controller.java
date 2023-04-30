@@ -31,12 +31,25 @@ public class Usuario_Compatify_Controller {
 		return "crear-cuenta";
 	}
 	
-	@PostMapping("/usuariocompatify/save") //post ejecutado en crear-sesion
+	@PostMapping("/save") //post ejecutado en crear-sesion
 	public String saveUsuarioCompatify(@RequestParam("month") int month, @RequestParam("day") int day, @RequestParam("year") int year, 
-			Usuario_Compatify uc) {
+			Usuario_Compatify uc, Model m) {
+		String prueba = null;
 		uc.setFechanacimiento(new Date(year-1900,month-1,day));//Esta clase Date que se usa en Usuario_Compatify parece que está en desuso
-		usuarioCompatifyService.save(uc);
-		return "redirect:/inicio-de-sesion";
+		Usuario_Compatify existe = usuarioCompatifyService.getById(uc.getNombre());
+		try {
+			prueba = existe.getContraseña();
+		} catch(EntityNotFoundException e) {
+			prueba=null;
+		}
+		if(prueba==null) {
+			usuarioCompatifyService.save(uc);
+			return "redirect:/inicio-de-sesion";
+		}
+		m.addAttribute("error", "Nombre de usuario ya usado por otra cuenta");
+		m.addAttribute("usuariocompatify", new Usuario_Compatify());
+		return "crear-cuenta";
+		
 	}
 
 
@@ -104,6 +117,7 @@ public class Usuario_Compatify_Controller {
 		Usuario_Compatify uc = usuarioCompatifyService.getById(userName);
 		if(actual.equals(uc.getContraseña()) && nueva1.equals(nueva2)) {
 			uc.setContraseña(nueva1);
+			uc.markNotNew();
 			usuarioCompatifyService.save(uc);
 			return "redirect:/perfil";
 		}else if(!actual.equals(uc.getContraseña())) {
