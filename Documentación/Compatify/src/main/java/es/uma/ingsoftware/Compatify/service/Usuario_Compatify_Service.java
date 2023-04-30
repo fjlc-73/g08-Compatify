@@ -1,5 +1,7 @@
 package es.uma.ingsoftware.Compatify.service;
 
+import java.util.ArrayList;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -21,6 +23,11 @@ public class Usuario_Compatify_Service {
 		
 			return usuarioCompatifyRepository.getReferenceById(nombre);
 		
+	}
+
+	public java.util.List<Usuario_Compatify> buscarPorNombre(String nombre) {
+		java.util.List<Usuario_Compatify> lista = usuarioCompatifyRepository.findByNombreContaining(nombre);
+		return lista;
 	}
 
 }

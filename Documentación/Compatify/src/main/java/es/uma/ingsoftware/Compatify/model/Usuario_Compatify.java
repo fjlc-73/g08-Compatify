@@ -104,14 +104,17 @@ public class Usuario_Compatify {
 
 	@Override
 	public boolean equals(Object obj) {
-		if (this == obj)
+		if (this == obj) {
 			return true;
-		if (obj == null)
+		}
+		if (obj == null) {
 			return false;
-		if (getClass() != obj.getClass())
+		}
+		if (!(obj instanceof Usuario_Compatify)) {
 			return false;
+		}
 		Usuario_Compatify other = (Usuario_Compatify) obj;
-		return Objects.equals(nombre, other.nombre);
+		return nombre.equals(other.getNombre());
 	}
 
 	@Override

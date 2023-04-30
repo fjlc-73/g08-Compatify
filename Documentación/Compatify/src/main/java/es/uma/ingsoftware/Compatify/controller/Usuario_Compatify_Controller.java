@@ -9,6 +9,7 @@ import org.springframework.web.bind.annotation.ModelAttribute;
 
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 import org.springframework.web.bind.annotation.PostMapping;
 
 import es.uma.ingsoftware.Compatify.model.Usuario_Compatify;
@@ -124,6 +125,27 @@ public class Usuario_Compatify_Controller {
 		 HttpSession session = request.getSession();
 		 session.removeAttribute("userName");
 		 return "redirect:/";
+	 }
+	 
+	 @RequestMapping("/amigos")
+	 public String showBuscador() {
+		 return "amigos";
+	 }
+	 
+	 @RequestMapping("/buscarusuario")
+	 public String buscarUsuario(HttpServletRequest request, RedirectAttributes ra, @RequestParam("nombre") String nombre) {
+		 HttpSession session = request.getSession();
+		 String userName = (String) session.getAttribute("userName");
+		 Usuario_Compatify usuario_actual = usuarioCompatifyService.getById(userName);
+		 java.util.List<Usuario_Compatify> resultadoBusqueda = usuarioCompatifyService.buscarPorNombre(nombre);
+		 resultadoBusqueda.remove(usuario_actual);
+		 ra.addFlashAttribute("usuarios",resultadoBusqueda);
+		 return "redirect:/amigos";
+	 }
+	 
+	 @RequestMapping("/comparar")//Este método hay que implementarlo, ahora mismo solo redirige al perfil para que se pueda probar
+	 public String comparar(@RequestParam(value="seleccionado", required=false) String nombre) {
+		 return "redirect:/perfil";
 	 }
 	
 }
