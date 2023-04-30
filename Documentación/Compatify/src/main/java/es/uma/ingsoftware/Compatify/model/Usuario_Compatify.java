@@ -4,16 +4,14 @@ import java.util.Date;
 import java.util.List;
 import java.util.Objects;
 
-import org.springframework.data.domain.Persistable;
 
 import jakarta.persistence.Entity;
 import jakarta.persistence.Id;
 import jakarta.persistence.ManyToMany;
 import jakarta.persistence.OneToOne;
-import jakarta.persistence.Transient;
 
 @Entity
-public class Usuario_Compatify implements Persistable<String> {
+public class Usuario_Compatify{
 
 	@Id
 	private String nombre;
@@ -22,9 +20,6 @@ public class Usuario_Compatify implements Persistable<String> {
 	private String genero;
 	private Date fechanacimiento;
 	private boolean cuenta_privada;
-
-	@Transient
-	private boolean isNew = true;
 
 	@OneToOne
 	private Usuario_Spotify usuarioSpotify;
@@ -125,20 +120,6 @@ public class Usuario_Compatify implements Persistable<String> {
 		return "Usuario_Compatify [nombre=" + nombre + ", email=" + email + ", contraseña=" + contraseña + ", genero="
 				+ genero + ", fechanacimiento=" + fechanacimiento + ", cuenta_privada=" + cuenta_privada
 				+ ", usuarioSpotify=" + usuarioSpotify + ", amigos=" + amigos + "]";
-	}
-
-	@Override
-	public String getId() {
-		return nombre;
-	}
-
-	@Override
-	public boolean isNew() {
-		return isNew;
-	}
-
-	public void markNotNew() {
-		this.isNew = false;
 	}
 
 }

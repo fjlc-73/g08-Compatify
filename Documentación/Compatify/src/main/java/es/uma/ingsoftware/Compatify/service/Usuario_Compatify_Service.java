@@ -29,5 +29,9 @@ public class Usuario_Compatify_Service {
 		java.util.List<Usuario_Compatify> lista = usuarioCompatifyRepository.findByNombreContaining(nombre);
 		return lista;
 	}
+	
+	public boolean existsbyNombre(String nombre) {
+		return usuarioCompatifyRepository.existsById(nombre);
+	}
 
 }
