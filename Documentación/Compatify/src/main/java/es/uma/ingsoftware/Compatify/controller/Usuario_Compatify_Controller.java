@@ -33,10 +33,16 @@ public class Usuario_Compatify_Controller {
 	}
 	
 	@PostMapping("/save") //post ejecutado en crear-sesion
-	public String saveUsuarioCompatify(@RequestParam("month") int month, @RequestParam("day") int day, @RequestParam("year") int year, 
+	public String saveUsuarioCompatify(@RequestParam("month") int month, @RequestParam("day") String day, @RequestParam("year") String year, 
 			Usuario_Compatify uc, Model m) {
 		String prueba = null;
-		uc.setFechanacimiento(new Date(year-1900,month-1,day));//Esta clase Date que se usa en Usuario_Compatify parece que está en desuso
+		int dayInt, dayYear;
+		try {
+			dayInt=Integer.valueOf(day);
+			dayYear=Integer.valueOf(year);
+			uc.setFechanacimiento(new Date(dayYear-1900,month-1,dayInt));//Esta clase Date que se usa en Usuario_Compatify parece que está en desuso
+		}catch(NumberFormatException nfe) {
+		}
 		Usuario_Compatify existe = usuarioCompatifyService.getById(uc.getNombre());
 		try {
 			prueba = existe.getContraseña();
