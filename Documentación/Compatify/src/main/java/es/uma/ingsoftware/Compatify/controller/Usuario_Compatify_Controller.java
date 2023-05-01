@@ -35,7 +35,6 @@ public class Usuario_Compatify_Controller {
 	@PostMapping("/save") //post ejecutado en crear-sesion
 	public String saveUsuarioCompatify(@RequestParam("month") int month, @RequestParam("day") String day, @RequestParam("year") String year, 
 			Usuario_Compatify uc, Model m) {
-		String prueba = null;
 		int dayInt, dayYear;
 		try {
 			dayInt=Integer.valueOf(day);
@@ -43,13 +42,8 @@ public class Usuario_Compatify_Controller {
 			uc.setFechanacimiento(new Date(dayYear-1900,month-1,dayInt));//Esta clase Date que se usa en Usuario_Compatify parece que está en desuso
 		}catch(NumberFormatException nfe) {
 		}
-		Usuario_Compatify existe = usuarioCompatifyService.getById(uc.getNombre());
-		try {
-			prueba = existe.getContraseña();
-		} catch(EntityNotFoundException e) {
-			prueba=null;
-		}
-		if(prueba==null) {
+		boolean existeya = usuarioCompatifyService.existsbyNombre(uc.getNombre());
+		if(!existeya) {
 			usuarioCompatifyService.save(uc);
 			return "redirect:/inicio-de-sesion";
 		}
@@ -69,7 +63,40 @@ public class Usuario_Compatify_Controller {
 	    }
 		model.addAttribute("usuarioperfil", usuarioCompatifyService.getById(userName));
 		return "perfil";
-
+	}
+	
+	@RequestMapping("/editar-perfil")
+	public String viewEditarPerfil(HttpServletRequest request, Model model) {
+		HttpSession session = request.getSession();
+	    String userName = (String) session.getAttribute("userName");
+		model.addAttribute("usuarioperfil", usuarioCompatifyService.getById(userName));
+		return "editar-perfil";
+	}
+	
+	@PostMapping("/edit") //post ejecutado en editar-perfil
+	public String editUsuarioCompatify(HttpServletRequest request, @RequestParam("nombre") String nombre, @RequestParam("email") String email,@RequestParam("genero") String genero, @RequestParam("month") int month, @RequestParam("day") int day, @RequestParam("year") int year, 
+			 Model m) {
+		HttpSession session = request.getSession();
+		String userName = (String) session.getAttribute("userName");
+		Usuario_Compatify old = usuarioCompatifyService.getById(userName);
+		Usuario_Compatify nuevo = new Usuario_Compatify();
+		boolean existeya = (!userName.equals(nombre) && usuarioCompatifyService.existsbyNombre(nombre));
+		if(!existeya) {
+			nuevo.setNombre(nombre);
+			nuevo.setEmail(email);
+			nuevo.setGenero(genero);
+			nuevo.setFechanacimiento(new Date(year-1900,month-1,day));//Esta clase Date que se usa en Usuario_Compatify parece que está en desuso
+			nuevo.setContraseña(old.getContraseña());
+			nuevo.setUsuarioSpotify(old.getUsuarioSpotify());
+			usuarioCompatifyService.deleteByNombre(userName);
+			usuarioCompatifyService.save(nuevo);
+			session.setAttribute("userName", nombre);
+			return "redirect:/perfil";
+		}
+		m.addAttribute("error", "Nombre de usuario ya usado por otra cuenta");
+		m.addAttribute("usuarioperfil", old);
+		return "editar-perfil";
+		
 	}
 
 
@@ -124,7 +151,6 @@ public class Usuario_Compatify_Controller {
 		Usuario_Compatify uc = usuarioCompatifyService.getById(userName);
 		if(actual.equals(uc.getContraseña()) && nueva1.equals(nueva2)) {
 			uc.setContraseña(nueva1);
-			uc.markNotNew();
 			usuarioCompatifyService.save(uc);
 			return "redirect:/perfil";
 		}else if(!actual.equals(uc.getContraseña())) {
