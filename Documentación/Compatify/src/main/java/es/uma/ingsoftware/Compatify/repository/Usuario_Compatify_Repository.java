@@ -6,7 +6,6 @@ import es.uma.ingsoftware.Compatify.model.Usuario_Compatify;
 
 public interface Usuario_Compatify_Repository extends JpaRepository<Usuario_Compatify, String>{
 	java.util.List<Usuario_Compatify> findByNombreContaining(String nombre);
-	boolean findByNombre(String nombre);
 }
 
 

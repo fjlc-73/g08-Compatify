@@ -33,5 +33,9 @@ public class Usuario_Compatify_Service {
 	public boolean existsbyNombre(String nombre) {
 		return usuarioCompatifyRepository.existsById(nombre);
 	}
+	
+	public void deleteByNombre(String nombre) {
+		usuarioCompatifyRepository.deleteById(nombre);
+	}
 
 }
