@@ -103,28 +103,53 @@ public class Usuario_Compatify_Controller {
 	}
 	
 	@PostMapping("/edit") //post ejecutado en editar-perfil
-	public String editUsuarioCompatify(HttpServletRequest request, @RequestParam("nombre") String nombre, @RequestParam("email") String email,@RequestParam("genero") String genero, @RequestParam("month") int month, @RequestParam("day") int day, @RequestParam("year") int year, 
+	public String editUsuarioCompatify(HttpServletRequest request, @RequestParam("nombre") String nombre, @RequestParam("email") String email,@RequestParam("genero") String genero, @RequestParam("month") int month, @RequestParam("day") String day, @RequestParam("year") String year, 
 			 Model m) {
+		int dayInt, yearInt;
 		HttpSession session = request.getSession();
 		String userName = (String) session.getAttribute("userName");
 		Usuario_Compatify old = usuarioCompatifyService.getById(userName);
 		Usuario_Compatify nuevo = new Usuario_Compatify();
-		boolean existeya = (!userName.equals(nombre) && usuarioCompatifyService.existsbyNombre(nombre));
-		if(!existeya) {
-			nuevo.setNombre(nombre);
-			nuevo.setEmail(email);
-			nuevo.setGenero(genero);
-			nuevo.setFechanacimiento(new Date(year-1900,month-1,day));//Esta clase Date que se usa en Usuario_Compatify parece que está en desuso
-			nuevo.setContraseña(old.getContraseña());
-			nuevo.setUsuarioSpotify(old.getUsuarioSpotify());
+		
+		nuevo.setNombre(nombre);
+		nuevo.setEmail(email);
+		nuevo.setGenero(genero);
+		nuevo.setContraseña(old.getContraseña());
+		nuevo.setUsuarioSpotify(old.getUsuarioSpotify());
+		
+		if(nuevo.getNombre().length()==0) {
+			m.addAttribute("error", "Tiene que introducir un nombre de usuario");
+		}else if(usuarioCompatifyService.existsbyNombre(nuevo.getNombre()) && !(old.getNombre().equals(nuevo.getNombre()))){
+			m.addAttribute("error", "Nombre de usuario ya usado por otra cuenta");
+		}else if(nuevo.getEmail().length()==0) {
+			m.addAttribute("error", "Introduzca un correo");
+		}else if(usuarioCompatifyService.existsByEmail(nuevo.getEmail()) && !(old.getEmail().equals(nuevo.getEmail()))){
+			m.addAttribute("error", "Correo ya usado");
+		}else {
+			try {
+				dayInt=Integer.valueOf(day);
+				yearInt=Integer.valueOf(year);
+				if(!fechaValida(dayInt,month,yearInt)) {
+					m.addAttribute("error", "Fecha no válida");
+				}else {
+					nuevo.setFechanacimiento(new Date(yearInt-1900,month-1,dayInt));//Esta clase Date que se usa en Usuario_Compatify parece que está en desuso
+				}
+			}catch(NumberFormatException nfe) {
+				m.addAttribute("error", "Formato incorrecto en fecha de nacimiento");
+			}
+			
+		}
+		
+		if(m.containsAttribute("error")) {
+			m.addAttribute("usuarioperfil", old);
+			return "editar-perfil";
+		}else {
 			usuarioCompatifyService.deleteByNombre(userName);
 			usuarioCompatifyService.save(nuevo);
 			session.setAttribute("userName", nombre);
 			return "redirect:/perfil";
 		}
-		m.addAttribute("error", "Nombre de usuario ya usado por otra cuenta");
-		m.addAttribute("usuarioperfil", old);
-		return "editar-perfil";
+		
 		
 	}
 
