@@ -98,14 +98,6 @@ public class Usuario_Compatify_Controller {
 		return "editar-perfil";
 		
 	}
-	
-	@RequestMapping("/actualizar-cuenta")
-	public String viewActualizarCuentaSpotify(HttpServletRequest request, Model model) {
-		HttpSession session = request.getSession();
-	    String userName = (String) session.getAttribute("userName");
-		model.addAttribute("usuarioperfil", usuarioCompatifyService.getById(userName));
-		return "actualizar-cuenta";
-	}
 
 
 	
