@@ -14,14 +14,29 @@ public class Artista {
 	private String spotify_id;
 	private String nombre;
 	private String generos; // genero1;genero2;genero3;etc
+	private String foto; 
+
+	public String getFoto() {
+		return foto;
+	}
+
+	public void setFoto(String foto) {
+		this.foto = foto;
+	}
 
 	@ManyToMany(mappedBy = "favArtistas")
 	private List<Usuario_Spotify> seguidores;
 	@ManyToMany(mappedBy = "autores")
 	private List<Cancion> canciones;
 
-	public Artista() {
+	public Artista(){
+		
+	}
 
+	public Artista(String spotify_id, String nombre, String generos) {
+		this.spotify_id = spotify_id;
+		this.generos = generos;
+		this.nombre = nombre;
 	}
 
 	public List<Usuario_Spotify> getSeguidores() {

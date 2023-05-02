@@ -14,6 +14,24 @@ public class Usuario_Spotify {
 	@Id
 	private String nombre;
 	private String token;
+	private String refresh_token;
+	private String email;
+
+	public String getEmail() {
+		return email;
+	}
+
+	public void setEmail(String email) {
+		this.email = email;
+	}
+
+	public String getRefresh_token() {
+		return refresh_token;
+	}
+
+	public void setRefresh_token(String refresh_token) {
+		this.refresh_token = refresh_token;
+	}
 
 	@OneToOne(mappedBy = "usuarioSpotify")
 	private Usuario_Compatify usuarioCompatify;
@@ -23,8 +41,21 @@ public class Usuario_Spotify {
 	@ManyToMany
 	private List<Cancion> favCancion;
 
-	public Usuario_Spotify() {
+	public Usuario_Spotify(){
+		
+	}
 
+	public Usuario_Spotify(String nombre){
+		this.nombre = nombre;
+	}
+
+	public Usuario_Spotify(String nombre, String token, String refresh_token, String email) {
+		this.nombre = nombre;
+		this.token = token;
+		this.refresh_token = refresh_token;
+		this.favArtistas = null;
+		this.favCancion = null;
+		this.email = email;
 	}
 
 	public Usuario_Compatify getUsuarioCompatify() {

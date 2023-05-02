@@ -154,5 +154,10 @@ public class Usuario_Compatify_Controller {
 	 public String comparar(@RequestParam(value="seleccionado", required=false) String nombre) {
 		 return "redirect:/perfil";
 	 }
+
+	 @RequestMapping("/actualizar-cuenta")
+	 public String actualizarcuenta(){
+		return "actualizar-cuenta";
+	 }
 	
 }

@@ -13,7 +13,16 @@ public class Cancion {
 	@Id
 	private String spotify_id;
 	private String nombre;
-	private String generos;
+	private String generos;//no existe
+	private String foto;//no existe
+
+	public String getFoto() {
+		return foto;
+	}
+
+	public void setFoto(String foto) {
+		this.foto = foto;
+	}
 
 	@ManyToMany
 	private List<Artista> autores;
@@ -21,7 +30,12 @@ public class Cancion {
 	private List<Usuario_Spotify> oyentes;
 
 	public Cancion() {
+		
+	}
 
+	public Cancion(String spotify_id, String nombre){
+		this.spotify_id = spotify_id;
+		this.nombre = nombre;
 	}
 
 	public List<Artista> getAutores() {
