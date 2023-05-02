@@ -37,5 +37,9 @@ public class Usuario_Compatify_Service {
 	public void deleteByNombre(String nombre) {
 		usuarioCompatifyRepository.deleteById(nombre);
 	}
+	
+	public boolean existsByEmail(String email) {
+		return usuarioCompatifyRepository.existsByEmail(email);
+	}
 
 }

@@ -135,9 +135,9 @@ body {
 				</div>
 				<h1 class="crear-cuenta-text01">Regístrate gratis</h1>
 				<p th:if="${error}" class="alert">
-						Nombre de usuario ya usado por otra cuenta <span class="closebtn"
-							onclick="this.parentElement.style.display='none';">&times;</span>
-						</p>
+					<span th:text="${error}"></span>
+					<span class="closebtn" onclick="this.parentElement.style.display='none';">&times;</span>
+				</p>
 				<form th:action="@{/save}" method="post"
 					th:object="${usuariocompatify}">
 					<div class="crear-cuenta-container03">

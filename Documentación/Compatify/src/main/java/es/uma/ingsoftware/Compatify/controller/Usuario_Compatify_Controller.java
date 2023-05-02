@@ -1,5 +1,6 @@
 package es.uma.ingsoftware.Compatify.controller;
 
+import java.time.LocalDate;
 import java.util.Date;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -35,24 +36,52 @@ public class Usuario_Compatify_Controller {
 	@PostMapping("/save") //post ejecutado en crear-sesion
 	public String saveUsuarioCompatify(@RequestParam("month") int month, @RequestParam("day") String day, @RequestParam("year") String year, 
 			Usuario_Compatify uc, Model m) {
-		int dayInt, dayYear;
-		try {
-			dayInt=Integer.valueOf(day);
-			dayYear=Integer.valueOf(year);
-			uc.setFechanacimiento(new Date(dayYear-1900,month-1,dayInt));//Esta clase Date que se usa en Usuario_Compatify parece que está en desuso
-		}catch(NumberFormatException nfe) {
+		int dayInt, yearInt;
+		if(uc.getNombre().length()==0) {
+			m.addAttribute("error", "Tiene que introducir un nombre de usuario");
+		}else if(usuarioCompatifyService.existsbyNombre(uc.getNombre())) {
+			m.addAttribute("error", "Nombre de usuario ya usado por otra cuenta");
+		}else if(uc.getEmail().length()==0) {
+			m.addAttribute("error", "Introduzca un correo");
+		}else if(usuarioCompatifyService.existsByEmail(uc.getEmail())){
+			m.addAttribute("error", "Correo ya usado");
+		}else if(uc.getContraseña().length() < 8) {
+			m.addAttribute("error", "La contraseña debe tener al menos 8 carácteres");
+		}else {
+			try {
+				dayInt=Integer.valueOf(day);
+				yearInt=Integer.valueOf(year);
+				if(!fechaValida(dayInt,month,yearInt)) {
+					m.addAttribute("error", "Fecha no válida");
+				}else {
+					uc.setFechanacimiento(new Date(yearInt-1900,month-1,dayInt));//Esta clase Date que se usa en Usuario_Compatify parece que está en desuso
+				}
+			}catch(NumberFormatException nfe) {
+				m.addAttribute("error", "Formato incorrecto en fecha de nacimiento");
+			}
 		}
-		boolean existeya = usuarioCompatifyService.existsbyNombre(uc.getNombre());
-		if(!existeya) {
+		if(m.containsAttribute("error")) {
+			m.addAttribute("usuariocompatify", new Usuario_Compatify());
+			return "crear-cuenta";
+		}else {
 			usuarioCompatifyService.save(uc);
 			return "redirect:/inicio-de-sesion";
-		}
-		m.addAttribute("error", "Nombre de usuario ya usado por otra cuenta");
-		m.addAttribute("usuariocompatify", new Usuario_Compatify());
-		return "crear-cuenta";
-		
+		}		
 	}
 
+
+	private boolean fechaValida(int dayInt, int month, int yearInt) {
+		try {
+			LocalDate fecha = LocalDate.of(yearInt, month, dayInt);
+		}catch (java.time.DateTimeException e) {
+			return false;
+		}
+		int yearActual = LocalDate.now().getYear();
+		if(yearInt < 1900 || yearInt > yearActual) {
+			return false;
+		}
+		return true;
+	}
 
 	@RequestMapping("/perfil")
 	public String pruebaperfil (HttpServletRequest request, Model model) {
