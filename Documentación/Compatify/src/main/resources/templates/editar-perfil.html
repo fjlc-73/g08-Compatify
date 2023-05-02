@@ -227,8 +227,8 @@ body {
 							class="editar-perfil-checkbox" />
 					</div>
 					<p th:if="${error}" class="alert">
-						Nombre de usuario ya usado por otra cuenta <span class="closebtn"
-							onclick="this.parentElement.style.display='none';">&times;</span>
+						<span th:text="${error}"></span>
+						<span class="closebtn" onclick="this.parentElement.style.display='none';">&times;</span>
 					</p>
 					<div class="editar-perfil-container14">
 						<a href="perfil" class="editar-perfil-navlink7">
