@@ -194,25 +194,27 @@ public class Usuario_Compatify_Controller {
 	}
 	
 	@RequestMapping("/cambio-de-contrasea")
-	public String cambiarContraseña(Model model) {
+	public String cambiarContraseña() {
 		return "cambio-de-contrasea";
 	}
 
 	 @RequestMapping("/cambiarcontraseña")
-	public String cambiarContraseña(HttpServletRequest request, Model m, @RequestParam("actual") String actual, @RequestParam("nueva1") String nueva1, @RequestParam("nueva2") String nueva2) {
+	public String cambiarContraseña(RedirectAttributes ra, HttpServletRequest request, @RequestParam("actual") String actual, @RequestParam("nueva1") String nueva1, @RequestParam("nueva2") String nueva2) {
 		HttpSession session = request.getSession();
 		String userName = (String) session.getAttribute("userName");
 		Usuario_Compatify uc = usuarioCompatifyService.getById(userName);
-		if(actual.equals(uc.getContraseña()) && nueva1.equals(nueva2)) {
+		if(!actual.equals(uc.getContraseña())) {
+			ra.addFlashAttribute("error", "Contraseña incorrecta");
+		}else if(!nueva1.equals(nueva2)){
+			ra.addFlashAttribute("error", "La confirmación no coincide con la nueva contraseña");
+		}else if(nueva1.length() < 8) {
+			ra.addFlashAttribute("error", "La contraseña debe tener al menos 8 carácteres");
+		}else {
 			uc.setContraseña(nueva1);
 			usuarioCompatifyService.save(uc);
 			return "redirect:/perfil";
-		}else if(!actual.equals(uc.getContraseña())) {
-			m.addAttribute("error", "Contraseña incorrecta");
-		}else {
-			m.addAttribute("error", "La confirmación no coincide con la nueva contraseña");
 		}
-		return "cambio-de-contrasea";
+		return "redirect:/cambio-de-contrasea";
 	}
 	 
 	 @RequestMapping("/cerrar-sesion")
@@ -249,7 +251,11 @@ public class Usuario_Compatify_Controller {
 	 }
 
 	 @RequestMapping("/actualizar-cuenta")
-	 public String actualizarcuenta(){
+	 public String actualizarcuenta(HttpServletRequest request, Model m){
+		HttpSession session = request.getSession();
+		String userName = (String) session.getAttribute("userName");
+		Usuario_Compatify usuario_actual = usuarioCompatifyService.getById(userName);
+		m.addAttribute("usuario",usuario_actual);
 		return "actualizar-cuenta";
 	 }
 	

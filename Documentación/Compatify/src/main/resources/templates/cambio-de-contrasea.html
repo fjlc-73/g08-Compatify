@@ -107,14 +107,14 @@
           </div>
           <div class="cambio-de-contrasea-container06">
               <input type="submit" class="cambio-de-contrasea-get-started button" value="Establecer nueva contraseña" />
-            <a href="editar-perfil.html" class="cambio-de-contrasea-navlink1">
+            <a href="perfil" class="cambio-de-contrasea-navlink1">
               <div class="cambio-de-contrasea-get-started1 button">
                 <span class="cambio-de-contrasea-text05">Cancelar</span>
               </div>
             </a>
           </div>
         	<p th:if="${error}" class="alert">
-			Datos incorrectos <span class="closebtn"
+			<span th:text="${error}"></span><span class="closebtn"
 			onclick="this.parentElement.style.display='none';">&times;</span>
 			</p>
           </form>
