@@ -58,8 +58,8 @@ public class Usuario_Spotify_Controller {
 	
 	@RequestMapping("/login")
 	public void login(HttpServletRequest request, HttpServletResponse response) throws IOException {
-		//String state = generateRandomString(16);
-		String state = "skkdiekdaosofpwo";//Esta cadena debería ser aleatoria, implementar generateRandomString
+		String state = generateRandomString(16);
+		// String state = "skkdiekdaosofpwo";//Esta cadena debería ser aleatoria, implementar generateRandomString
 	    String scope = "user-top-read user-read-private user-read-email";//Permisos que se les pide al usuario, habría que ver cuales agregar
 	    
 	    String url = SPOTIFY_AUTH_URL + "?" + 
@@ -307,8 +307,16 @@ public class Usuario_Spotify_Controller {
 		}
 	
 	private String generateRandomString(int length) {
-		// Implementación de generación de cadenas aleatorias
-		return null;
+		// Implementación de generación de cadenas aleatoria
+		int i = 0 ;
+		String cadena = "" ;
+		while (i<16) {
+			Random r = new Random();
+			char c = (char) (r.nextInt(26) + 'a') ;
+			cadena = cadena + c ;
+			i++ ;
+		}
+		return cadena ;
 	}
 
 }
