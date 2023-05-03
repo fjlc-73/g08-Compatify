@@ -1,0 +1,175 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<title>comparacion - Planical modern template</title>
+<meta property="og:title"
+	content="comparacion - Planical modern template" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<meta charset="utf-8" />
+<meta property="twitter:card" content="summary_large_image" />
+
+<style data-tag="reset-style-sheet">
+html {
+	line-height: 1.15;
+}
+
+body {
+	margin: 0;
+}
+
+* {
+	box-sizing: border-box;
+	border-width: 0;
+	border-style: solid;
+}
+
+p, li, ul, pre, div, h1, h2, h3, h4, h5, h6, figure, blockquote,
+	figcaption {
+	margin: 0;
+	padding: 0;
+}
+
+button {
+	background-color: transparent;
+}
+
+button, input, optgroup, select, textarea {
+	font-family: inherit;
+	font-size: 100%;
+	line-height: 1.15;
+	margin: 0;
+}
+
+button, select {
+	text-transform: none;
+}
+
+button, [type="button"], [type="reset"], [type="submit"] {
+	-webkit-appearance: button;
+}
+
+button::-moz-focus-inner, [type="button"]::-moz-focus-inner, [type="reset"]::-moz-focus-inner,
+	[type="submit"]::-moz-focus-inner {
+	border-style: none;
+	padding: 0;
+}
+
+button:-moz-focus, [type="button"]:-moz-focus, [type="reset"]:-moz-focus,
+	[type="submit"]:-moz-focus {
+	outline: 1px dotted ButtonText;
+}
+
+a {
+	color: inherit;
+	text-decoration: inherit;
+}
+
+input {
+	padding: 2px 4px;
+}
+
+img {
+	display: block;
+}
+
+html {
+	scroll-behavior: smooth
+}
+</style>
+<style data-tag="default-style-sheet">
+html {
+	font-family: Inter;
+	font-size: 16px;
+}
+
+body {
+	font-weight: 400;
+	font-style: normal;
+	text-decoration: none;
+	text-transform: none;
+	letter-spacing: normal;
+	line-height: 1.15;
+	color: var(- -dl-color-gray-black);
+	background-color: var(- -dl-color-gray-white);
+}
+</style>
+<link rel="stylesheet"
+	href="https://fonts.googleapis.com/css2?family=Inter:wght@100;200;300;400;500;600;700;800;900&amp;display=swap"
+	data-tag="font" />
+<link rel="stylesheet"
+	href="https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&amp;display=swap"
+	data-tag="font" />
+<link rel="stylesheet" href="./style.css" />
+</head>
+<body>
+	<div>
+		<link href="./comparar.css" rel="stylesheet" />
+
+		<div class="comparacion-container">
+			<h1 class="comparacion-text">
+				<span>Aquí tienes los resultados de tu comparación con...</span> <br />
+			</h1>
+			<h1 th:text="${amigo}" class="comparacion-text03">
+				<br />
+			</h1>
+			<div class="comparacion-container1">
+				<div class="comparacion-container2">
+
+					<h1 class="comparacion-text06">Vuestros artistas en común
+						son...</h1>
+				</div>
+				<table>
+					<tbody>
+						<tr th:each="a: ${artistas}">
+							<td><img th:src="${a.foto}" alt="${a.nombre}"
+								style="width: 400px; height: 400px;"></td>
+							<td><iframe style="border-radius: 12px"
+									th:src="@{${'https://open.spotify.com/embed/artist/' + a.spotify_id +'?utm_source=generator'}}"
+									width="100%" height="352" frameBorder="0" allowfullscreen=""
+									allow="autoplay; clipboard-write; encrypted-media; fullscreen; picture-in-picture"
+									loading="lazy"></iframe></td>
+					</tbody>
+				</table>
+				<p th:if="${errorartista}" class="comparacion-container3">
+					<span class="comparacion-text07"> <span>¡Vaya! No se
+							ha encontrado ningún artista en común</span> <br />
+					</span>
+				</p>
+			</div>
+			<div class="comparacion-container4">
+				<div class="comparacion-container5">
+					<h1 class="comparacion-text10">Vuestras canciones más
+						escuchadas en común son...</h1>
+				</div>
+			</div>
+			<table>
+				<tbody>
+					<tr th:each="c: ${canciones}">
+						<td><iframe style="border-radius: 12px"
+								th:src="@{${'https://open.spotify.com/embed/track/' + c.spotify_id +'?utm_source=generator'}}"
+								width="100%" height="352" frameBorder="0" allowfullscreen=""
+								allow="autoplay; clipboard-write; encrypted-media; fullscreen; picture-in-picture"
+								loading="lazy"></iframe></td>
+				</tbody>
+			</table>
+			<p th:if="${errorcancion}" class="comparacion-container6">
+				<span class="comparacion-text11"> <span>¡Vaya! No se
+						ha encontrado ninguna canción en común</span> <br />
+				</span>
+			</p>
+			<div class="comparacion-container7">
+				<h1 class="comparacion-text14">Por esto...</h1>
+				<div class="comparacion-container8">
+					<h1 class="comparacion-text15">Compatibilidad musical del</h1>
+					<h1 class="comparacion-text16">--%</h1>
+				</div>
+			</div>
+			<a href="amigos.html" class="comparacion-navlink">
+				<div class="comparacion-get-started button">
+					<span class="comparacion-text17">Volver</span>
+				</div>
+			</a>
+		</div>
+	</div>
+</body>
+</html>
