@@ -285,8 +285,14 @@ public class Usuario_Compatify_Controller {
 
 		}
 		m.addAttribute("amigo", nombreusuario2);
+		int compatiblidad = logisticfunc(((float)7*artusuario1.size()+3*canusuario1.size())/(float)100);
+		m.addAttribute("compatibilidad", compatiblidad);
 
 		return "comparar";
+	}
+	
+	public int logisticfunc(double x) { //función logística para calcular la compatibilidad
+		return (int) Math.round(100*((1.1/(1+Math.exp(-8.4*(x-0.275))))-0.1));
 	}
 
 
