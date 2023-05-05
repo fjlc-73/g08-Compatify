@@ -37,37 +37,37 @@ public class Usuario_Compatify_Controller {
 	}
 
 	@PostMapping("/save") // post ejecutado en crear-sesion
-	public String saveUsuarioCompatify(@RequestParam("month") int month, @RequestParam("day") String day,
-			@RequestParam("year") String year, Usuario_Compatify uc, Model m) {
+	public String saveUsuarioCompatify(RedirectAttributes ra, @RequestParam("month") int month, @RequestParam("day") String day,
+			@RequestParam("year") String year, Usuario_Compatify uc) {
 		int dayInt, yearInt;
 		if (uc.getNombre().length() == 0) {
-			m.addAttribute("error", "Tiene que introducir un nombre de usuario");
+			ra.addFlashAttribute("error", "Tiene que introducir un nombre de usuario");
 		} else if (usuarioCompatifyService.existsbyNombre(uc.getNombre())) {
-			m.addAttribute("error", "Nombre de usuario ya usado por otra cuenta");
+			ra.addFlashAttribute("error", "Nombre de usuario ya usado por otra cuenta");
 		} else if (uc.getEmail().length() == 0) {
-			m.addAttribute("error", "Introduzca un correo");
+			ra.addFlashAttribute("error", "Introduzca un correo");
 		} else if (usuarioCompatifyService.existsByEmail(uc.getEmail())) {
-			m.addAttribute("error", "Correo ya usado");
+			ra.addFlashAttribute("error", "Correo ya usado");
 		} else if (uc.getContraseña().length() < 8) {
-			m.addAttribute("error", "La contraseña debe tener al menos 8 carácteres");
+			ra.addFlashAttribute("error", "La contraseña debe tener al menos 8 carácteres");
 		} else {
 			try {
 				dayInt = Integer.valueOf(day);
 				yearInt = Integer.valueOf(year);
 				if (!fechaValida(dayInt, month, yearInt)) {
-					m.addAttribute("error", "Fecha no válida");
+					ra.addFlashAttribute("error", "Fecha no válida");
 				} else {
 					uc.setFechanacimiento(new Date(yearInt - 1900, month - 1, dayInt));// Esta clase Date que se usa en
 																						// Usuario_Compatify parece que
 																						// está en desuso
 				}
 			} catch (NumberFormatException nfe) {
-				m.addAttribute("error", "Formato incorrecto en fecha de nacimiento");
+				ra.addFlashAttribute("error", "Formato incorrecto en fecha de nacimiento");
 			}
 		}
-		if (m.containsAttribute("error")) {
-			m.addAttribute("usuariocompatify", new Usuario_Compatify());
-			return "crear-cuenta";
+		if (ra.getFlashAttributes().containsKey("error")) {
+			ra.addFlashAttribute("usuariocompatify", new Usuario_Compatify());
+			return "redirect:/crear-cuenta";
 		} else {
 			usuarioCompatifyService.save(uc);
 			return "redirect:/inicio-de-sesion";
@@ -177,8 +177,8 @@ public class Usuario_Compatify_Controller {
 	}
 
 	@PostMapping("/checkpassword") // post ejecutado en iniciar-sesion
-	public String checkUsuarioCompatify(HttpServletRequest request,
-			@ModelAttribute(name = "loginForm") Usuario_Compatify uc, Model m) {
+	public String checkUsuarioCompatify(RedirectAttributes ra, HttpServletRequest request,
+			@ModelAttribute(name = "loginForm") Usuario_Compatify uc) {
 		String inputUsername = uc.getNombre();
 		String inputPassword = uc.getContraseña();
 		String realPassword = "???";
@@ -196,8 +196,8 @@ public class Usuario_Compatify_Controller {
 															// recuperarlo en otros métodos
 			return "redirect:/perfil";
 		}
-		m.addAttribute("error", "Usuario o contraseña incorrectos");
-		return "inicio-de-sesion";
+		ra.addFlashAttribute("error", "Usuario o contraseña incorrectos");
+		return "redirect:/inicio-de-sesion";
 	}
 	
 	@RequestMapping("/cambio-de-contrasea")

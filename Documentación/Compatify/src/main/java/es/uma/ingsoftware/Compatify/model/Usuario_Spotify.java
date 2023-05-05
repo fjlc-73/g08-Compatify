@@ -2,6 +2,7 @@ package es.uma.ingsoftware.Compatify.model;
 
 import java.util.List;
 import java.util.Objects;
+import java.util.Date;
 
 import jakarta.persistence.Entity;
 import jakarta.persistence.Id;
@@ -16,6 +17,15 @@ public class Usuario_Spotify {
 	private String token;
 	private String refresh_token;
 	private String email;
+	private Date ultAct;
+
+	public Date getUltAct() {
+		return ultAct;
+	}
+
+	public void setUltAct(Date ultAct) {
+		this.ultAct = ultAct;
+	}
 
 	public String getEmail() {
 		return email;
