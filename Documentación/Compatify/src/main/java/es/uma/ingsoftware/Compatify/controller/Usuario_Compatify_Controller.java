@@ -200,6 +200,11 @@ public class Usuario_Compatify_Controller {
 		m.addAttribute("error", "Usuario o contraseña incorrectos");
 		return "inicio-de-sesion";
 	}
+	
+	@RequestMapping("/cambio-de-contrasea")
+	public String cambiarContraseña() {
+		return "cambio-de-contrasea";
+	}
 
 	@RequestMapping("/cambiarcontraseña")
 	public String cambiarContraseña(RedirectAttributes ra, HttpServletRequest request,
