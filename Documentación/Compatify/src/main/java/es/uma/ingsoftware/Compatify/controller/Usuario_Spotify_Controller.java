@@ -59,7 +59,6 @@ public class Usuario_Spotify_Controller {
 	@RequestMapping("/login")
 	public void login(HttpServletRequest request, HttpServletResponse response) throws IOException {
 		String state = generateRandomString(16);
-		// String state = "skkdiekdaosofpwo";//Esta cadena debería ser aleatoria, implementar generateRandomString
 	    String scope = "user-top-read user-read-private user-read-email";//Permisos que se les pide al usuario, habría que ver cuales agregar
 	    
 	    String url = SPOTIFY_AUTH_URL + "?" + 
@@ -161,6 +160,13 @@ public class Usuario_Spotify_Controller {
 			Usuario_Compatify uc = usuarioCompatifyService.getById(userName);
 			Usuario_Spotify user_s = uc.getUsuarioSpotify();
 
+
+			user_s.setFavArtistas(null);
+			user_s.setFavCancion(null);
+
+			Date fechaActual = new Date();
+			user_s.setUltAct(fechaActual);
+
 			String access_token = user_s.getToken();
 
 			// Crear un objeto HttpEntity con los encabezados
@@ -211,6 +217,7 @@ public class Usuario_Spotify_Controller {
 				}else{
 					//redirigir o dar un mensaje de error
 				}
+				
 			}
 	
 			//haremos lo mismo con los tracks:
