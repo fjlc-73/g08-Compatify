@@ -107,10 +107,9 @@ public class Usuario_Compatify_Controller {
 	}
 
 	@PostMapping("/edit") // post ejecutado en editar-perfil
-	public String editUsuarioCompatify(HttpServletRequest request, @RequestParam("nombre") String nombre,
+	public String editUsuarioCompatify(RedirectAttributes ra, HttpServletRequest request, @RequestParam("nombre") String nombre,
 			@RequestParam("email") String email, @RequestParam("genero") String genero,
-			@RequestParam("month") int month, @RequestParam("day") String day, @RequestParam("year") String year,
-			Model m) {
+			@RequestParam("month") int month, @RequestParam("day") String day, @RequestParam("year") String year) {
 		int dayInt, yearInt;
 		HttpSession session = request.getSession();
 		String userName = (String) session.getAttribute("userName");
@@ -124,35 +123,35 @@ public class Usuario_Compatify_Controller {
 		nuevo.setUsuarioSpotify(old.getUsuarioSpotify());
 
 		if (nuevo.getNombre().length() == 0) {
-			m.addAttribute("error", "Tiene que introducir un nombre de usuario");
+			ra.addFlashAttribute("error", "Tiene que introducir un nombre de usuario");
 		} else if (usuarioCompatifyService.existsbyNombre(nuevo.getNombre())
 				&& !(old.getNombre().equals(nuevo.getNombre()))) {
-			m.addAttribute("error", "Nombre de usuario ya usado por otra cuenta");
+			ra.addFlashAttribute("error", "Nombre de usuario ya usado por otra cuenta");
 		} else if (nuevo.getEmail().length() == 0) {
-			m.addAttribute("error", "Introduzca un correo");
+			ra.addFlashAttribute("error", "Introduzca un correo");
 		} else if (usuarioCompatifyService.existsByEmail(nuevo.getEmail())
 				&& !(old.getEmail().equals(nuevo.getEmail()))) {
-			m.addAttribute("error", "Correo ya usado");
+			ra.addFlashAttribute("error", "Correo ya usado");
 		} else {
 			try {
 				dayInt = Integer.valueOf(day);
 				yearInt = Integer.valueOf(year);
 				if (!fechaValida(dayInt, month, yearInt)) {
-					m.addAttribute("error", "Fecha no válida");
+					ra.addFlashAttribute("error", "Fecha no válida");
 				} else {
 					nuevo.setFechanacimiento(new Date(yearInt - 1900, month - 1, dayInt));// Esta clase Date que se usa
 																							// en Usuario_Compatify
 																							// parece que está en desuso
 				}
 			} catch (NumberFormatException nfe) {
-				m.addAttribute("error", "Formato incorrecto en fecha de nacimiento");
+				ra.addFlashAttribute("error", "Formato incorrecto en fecha de nacimiento");
 			}
 
 		}
 
-		if (m.containsAttribute("error")) {
-			m.addAttribute("usuarioperfil", old);
-			return "editar-perfil";
+		if (ra.getFlashAttributes().containsKey("error")) {
+			ra.addFlashAttribute("usuarioperfil", old);
+			return "redirect:/editar-perfil";
 		} else {
 			usuarioCompatifyService.deleteByNombre(userName);
 			usuarioCompatifyService.save(nuevo);
@@ -264,9 +263,17 @@ public class Usuario_Compatify_Controller {
 		ra.addFlashAttribute("usuarios", resultadoBusqueda);
 		return "redirect:/amigos";
 	}
-
+	
 	@RequestMapping("/comparar")
-	public String comparar(HttpServletRequest request, Model m,
+	public String comparar(Model m) {
+		if(!m.containsAttribute("amigo")) {
+			return "redirect:/amigos";
+		}
+		return "comparar";
+	}
+
+	@RequestMapping("/comparar-process")
+	public String comparar(HttpServletRequest request, RedirectAttributes ra,
 			@RequestParam(value = "seleccionado", required = false) String nombreusuario2) {
 		HttpSession session = request.getSession();
 		String nombreusuario1 = (String) session.getAttribute("userName");
@@ -279,21 +286,21 @@ public class Usuario_Compatify_Controller {
 		canusuario1.retainAll(canusuario2);
 		artusuario1.retainAll(artusuario2);
 		if (canusuario1.size() == 0) {
-			m.addAttribute("errorcancion", "¡Vaya! No se ha encontrado ninguna canción en común");
+			ra.addFlashAttribute("errorcancion", "¡Vaya! No se ha encontrado ninguna canción en común");
 		} else {
-			m.addAttribute("canciones", canusuario1);
+			ra.addFlashAttribute("canciones", canusuario1);
 		}
 		if (artusuario1.size() == 0) {
-			m.addAttribute("errorartista", "¡Vaya! No se ha encontrado ningún artista en común");
+			ra.addFlashAttribute("errorartista", "¡Vaya! No se ha encontrado ningún artista en común");
 		} else {
-			m.addAttribute("artistas", artusuario1);
+			ra.addFlashAttribute("artistas", artusuario1);
 
 		}
-		m.addAttribute("amigo", nombreusuario2);
+		ra.addFlashAttribute("amigo", nombreusuario2);
 		int compatiblidad = logisticfunc(((float)7*artusuario1.size()+3*canusuario1.size())/(float)100);
-		m.addAttribute("compatibilidad", compatiblidad);
+		ra.addFlashAttribute("compatibilidad", compatiblidad);
 
-		return "comparar";
+		return "redirect:/comparar";
 	}
 	
 	public int logisticfunc(double x) { //función logística para calcular la compatibilidad
