@@ -164,8 +164,6 @@ public class Usuario_Spotify_Controller {
 			user_s.setFavArtistas(null);
 			user_s.setFavCancion(null);
 
-			Date fechaActual = new Date();
-			user_s.setUltAct(fechaActual);
 
 			String access_token = user_s.getToken();
 
@@ -208,6 +206,8 @@ public class Usuario_Spotify_Controller {
 
 					artistas.add(artist);
 				}
+				Date fechaActual = new Date();
+				user_s.setUltAct(fechaActual);
 
 				user_s.setFavArtistas(artistas);
 				
