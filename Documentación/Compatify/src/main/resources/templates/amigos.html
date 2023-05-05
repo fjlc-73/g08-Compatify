@@ -110,7 +110,7 @@
                 </div>
               </div>
               <div th:if="${usuarios != null}" class="amigos-container10">
-                <form th:action="@{/comparar}" method="post" class="amigos-form1">
+                <form th:action="@{/comparar-process}" method="post" class="amigos-form1">
                   <select name="seleccionado" class="amigos-select">
                     <option th:each="usuario : ${usuarios}" th:value="${usuario.nombre}" th:text="${usuario.nombre}"></option>
                   </select>
