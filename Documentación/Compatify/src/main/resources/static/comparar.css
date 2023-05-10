@@ -194,6 +194,34 @@
   font-weight: 500;
   line-height: 24px;
 }
+.comparacion-verde {
+  width: 925px;
+  border: 2px dashed rgba(120, 120, 120, 0.4);
+  height: 500px;
+  display: flex;
+  position: relative;
+  align-self: center;
+  align-items: center;
+  padding-left: var(--dl-space-space-unit);
+  border-radius: 20px;
+  margin-bottom: 45px;
+  justify-content: center;
+  background-color: #00bb65;
+}
+.comparacion-verdecancion {
+  width: 706px;
+  border: 2px dashed rgba(120, 120, 120, 0.4);
+  height: 430px;
+  display: flex;
+  position: relative;
+  align-self: center;
+  align-items: center;
+  padding-left: var(--dl-space-space-unit);
+  border-radius: 20px;
+  margin-bottom: 29px;
+  justify-content: center;
+  background-color: #00bb65;
+}
 @media(max-width: 991px) {
   .comparacion-get-started {
     flex: 1;

@@ -18,6 +18,15 @@ public class Usuario_Spotify {
 	private String refresh_token;
 	private String email;
 	private Date ultAct;
+	private String foto;
+
+	public String getFoto() {
+		return foto;
+	}
+
+	public void setFoto(String foto) {
+		this.foto = foto;
+	}
 
 	public Date getUltAct() {
 		return ultAct;
@@ -59,13 +68,14 @@ public class Usuario_Spotify {
 		this.nombre = nombre;
 	}
 
-	public Usuario_Spotify(String nombre, String token, String refresh_token, String email) {
+	public Usuario_Spotify(String nombre, String token, String refresh_token, String email, String foto) {
 		this.nombre = nombre;
 		this.token = token;
 		this.refresh_token = refresh_token;
 		this.favArtistas = null;
 		this.favCancion = null;
 		this.email = email;
+		this.foto = foto;
 	}
 
 	public Usuario_Compatify getUsuarioCompatify() {

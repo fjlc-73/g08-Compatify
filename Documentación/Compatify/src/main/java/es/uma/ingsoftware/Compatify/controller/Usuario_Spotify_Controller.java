@@ -129,10 +129,12 @@ public class Usuario_Spotify_Controller {
 
 			String email = jsonNodeS.path("email").asText();
 			String usuario_s = jsonNodeS.path("display_name").asText();
+			String foto_s = jsonNodeS.path("images").path("url").asText();
+			
 
 			
 			//creamos el usuario spotify con esas caracteristicas:
-			Usuario_Spotify user_s = new Usuario_Spotify(usuario_s, access_token, refresh_token, email);
+			Usuario_Spotify user_s = new Usuario_Spotify(usuario_s, access_token, refresh_token, email, foto_s);
 
 			//conseguimos el usuario Compatify que ha iniciado sesion
 			HttpSession session = request.getSession();
