@@ -1,128 +1,195 @@
 <!DOCTYPE html>
 <html lang="en">
-  <head>
-    <title>Amigos - Planical modern template</title>
-    <meta property="og:title" content="Amigos - Planical modern template" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <meta charset="utf-8" />
-    <meta property="twitter:card" content="summary_large_image" />
+<head>
+<title>Amigos - Planical modern template</title>
+<meta property="og:title" content="Amigos - Planical modern template" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<meta charset="utf-8" />
+<meta property="twitter:card" content="summary_large_image" />
 
-    <style data-tag="reset-style-sheet">
-      html {  line-height: 1.15;}body {  margin: 0;}* {  box-sizing: border-box;  border-width: 0;  border-style: solid;}p,li,ul,pre,div,h1,h2,h3,h4,h5,h6,figure,blockquote,figcaption {  margin: 0;  padding: 0;}button {  background-color: transparent;}button,input,optgroup,select,textarea {  font-family: inherit;  font-size: 100%;  line-height: 1.15;  margin: 0;}button,select {  text-transform: none;}button,[type="button"],[type="reset"],[type="submit"] {  -webkit-appearance: button;}button::-moz-focus-inner,[type="button"]::-moz-focus-inner,[type="reset"]::-moz-focus-inner,[type="submit"]::-moz-focus-inner {  border-style: none;  padding: 0;}button:-moz-focus,[type="button"]:-moz-focus,[type="reset"]:-moz-focus,[type="submit"]:-moz-focus {  outline: 1px dotted ButtonText;}a {  color: inherit;  text-decoration: inherit;}input {  padding: 2px 4px;}img {  display: block;}html { scroll-behavior: smooth  }
-    </style>
-    <style data-tag="default-style-sheet">
-      html {
-        font-family: Inter;
-        font-size: 16px;
-      }
+<style data-tag="reset-style-sheet">
+html {
+	line-height: 1.15;
+}
 
-      body {
-        font-weight: 400;
-        font-style:normal;
-        text-decoration: none;
-        text-transform: none;
-        letter-spacing: normal;
-        line-height: 1.15;
-        color: var(--dl-color-gray-black);
-        background-color: var(--dl-color-gray-white);
+body {
+	margin: 0;
+}
 
-      }
-    </style>
-    <link
-      rel="stylesheet"
-      href="https://fonts.googleapis.com/css2?family=Inter:wght@100;200;300;400;500;600;700;800;900&amp;display=swap"
-      data-tag="font"
-    />
-    <link
-      rel="stylesheet"
-      href="https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&amp;display=swap"
-      data-tag="font"
-    />
-    <link rel="stylesheet" href="./style.css" />
-  </head>
-  <body>
-    <div>
-      <link href="./amigos.css" rel="stylesheet" />
+* {
+	box-sizing: border-box;
+	border-width: 0;
+	border-style: solid;
+}
 
-      <div class="amigos-container">
-        <div class="amigos-container01">
-          <img
-            alt="image"
-            src="https://play.teleporthq.io/static/svg/default-img.svg"
-            class="amigos-image"
-          />
-          <div class="amigos-container02"></div>
-          <a href="perfil" class="amigos-link">&nbsp; General</a>
-          <aside class="amigos-container03">
-            <a href="amigos" class="amigos-link1">Amigos</a>
-          </aside>
-          <a href="editar-perfil" class="amigos-navlink">Editar perfil</a>
-          <div class="amigos-container04">
-            <a href="actualizar-cuenta.html" class="amigos-navlink1">
-              Actualizar cuenta
-            </a>
-            <a href="cambio-de-contrasea" class="amigos-navlink2">
-              Cambiar contraseña
-            </a>
-            <a href="notificaciones.html" class="amigos-navlink3">
-              Notificaciones
-            </a>
-            <a href="cerrar-sesion" class="amigos-navlink4">
-              Cerrar sesión
-            </a>
-            <a href="/" class="amigos-navlink5">
-              <span>Página de inicio</span>
-              <br />
-            </a>
-          </div>
-        </div>
-        <div class="amigos-container05">
-          <h1 class="amigos-text2">
-            <span>Tus amigos</span>
-            <br />
-          </h1>
-          <div class="amigos-container06">
-            <span class="amigos-text5">
-              Indica con que perfil quieres comparar
-            </span>
-            <div class="amigos-container07">
-              <div class="amigos-container08">
-                <div class="amigos-container09">
-                  <form
-                    th:action="@{/buscarusuario}"
-                    method="post"
-                    class="amigos-form"
-                  >
-                    <button type="submit" class="amigos-button button">
-                      <svg viewBox="0 0 1024 1024" class="amigos-icon">
+p, li, ul, pre, div, h1, h2, h3, h4, h5, h6, figure, blockquote,
+	figcaption {
+	margin: 0;
+	padding: 0;
+}
+
+button {
+	background-color: transparent;
+}
+
+button, input, optgroup, select, textarea {
+	font-family: inherit;
+	font-size: 100%;
+	line-height: 1.15;
+	margin: 0;
+}
+
+button, select {
+	text-transform: none;
+}
+
+button, [type="button"], [type="reset"], [type="submit"] {
+	-webkit-appearance: button;
+}
+
+button::-moz-focus-inner, [type="button"]::-moz-focus-inner, [type="reset"]::-moz-focus-inner,
+	[type="submit"]::-moz-focus-inner {
+	border-style: none;
+	padding: 0;
+}
+
+button:-moz-focus, [type="button"]:-moz-focus, [type="reset"]:-moz-focus,
+	[type="submit"]:-moz-focus {
+	outline: 1px dotted ButtonText;
+}
+
+a {
+	color: inherit;
+	text-decoration: inherit;
+}
+
+input {
+	padding: 2px 4px;
+}
+
+img {
+	display: block;
+}
+
+html {
+	scroll-behavior: smooth
+}
+</style>
+<style data-tag="default-style-sheet">
+html {
+	font-family: Inter;
+	font-size: 16px;
+}
+
+body {
+	font-weight: 400;
+	font-style: normal;
+	text-decoration: none;
+	text-transform: none;
+	letter-spacing: normal;
+	line-height: 1.15;
+	color: var(- -dl-color-gray-black);
+	background-color: var(- -dl-color-gray-white);
+}
+
+.alert {
+	padding: 20px;
+	background-color: #f44336;
+	color: white;
+}
+
+.closebtn {
+	margin-left: 15px;
+	color: white;
+	font-weight: bold;
+	float: right;
+	font-size: 22px;
+	line-height: 20px;
+	cursor: pointer;
+	transition: 0.3s;
+}
+
+.closebtn:hover {
+	color: black;
+}
+</style>
+<link rel="stylesheet"
+	href="https://fonts.googleapis.com/css2?family=Inter:wght@100;200;300;400;500;600;700;800;900&amp;display=swap"
+	data-tag="font" />
+<link rel="stylesheet"
+	href="https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&amp;display=swap"
+	data-tag="font" />
+<link rel="stylesheet" href="./style.css" />
+</head>
+<body>
+	<div>
+		<link href="./amigos.css" rel="stylesheet" />
+
+		<div class="amigos-container">
+			<div class="amigos-container01">
+				<img alt="image"
+					src="https://play.teleporthq.io/static/svg/default-img.svg"
+					class="amigos-image" />
+				<div class="amigos-container02"></div>
+				<a href="perfil" class="amigos-link">&nbsp; General</a>
+				<aside class="amigos-container03">
+					<a href="amigos" class="amigos-link1">Amigos</a>
+				</aside>
+				<a href="editar-perfil" class="amigos-navlink">Editar perfil</a>
+				<div class="amigos-container04">
+					<a href="actualizar-cuenta.html" class="amigos-navlink1">
+						Actualizar cuenta </a> <a href="cambio-de-contrasea"
+						class="amigos-navlink2"> Cambiar contraseña </a> <a
+						href="notificaciones.html" class="amigos-navlink3">
+						Notificaciones </a> <a href="cerrar-sesion" class="amigos-navlink4">
+						Cerrar sesión </a> <a href="/" class="amigos-navlink5"> <span>Página
+							de inicio</span> <br />
+					</a>
+				</div>
+			</div>
+			<div class="amigos-container05">
+				<h1 class="amigos-text2">
+					<span>Tus amigos</span> <br />
+				</h1>
+				<div class="amigos-container06">
+					<span class="amigos-text5"> Indica con que perfil quieres
+						comparar </span>
+					<div class="amigos-container07">
+						<div class="amigos-container08">
+							<div class="amigos-container09">
+								<form th:action="@{/buscarusuario}" method="post"
+									class="amigos-form">
+									<button type="submit" class="amigos-button button">
+										<svg viewBox="0 0 1024 1024" class="amigos-icon">
                         <path
-                          d="M406 598q80 0 136-56t56-136-56-136-136-56-136 56-56 136 56 136 136 56zM662 598l212 212-64 64-212-212v-34l-12-12q-76 66-180 66-116 0-197-80t-81-196 81-197 197-81 196 81 80 197q0 42-20 95t-46 85l12 12h34z"
-                        ></path>
+												d="M406 598q80 0 136-56t56-136-56-136-136-56-136 56-56 136 56 136 136 56zM662 598l212 212-64 64-212-212v-34l-12-12q-76 66-180 66-116 0-197-80t-81-196 81-197 197-81 196 81 80 197q0 42-20 95t-46 85l12 12h34z"></path>
                       </svg>
-                    </button>
-                    <input
-                      type="Introduce el usuario a comparar"
-                      name="nombre"
-                      placeholder="Introduzca un nombre"
-                      class="amigos-textinput input"
-                    />
-                  </form>
-                </div>
-              </div>
-              <div th:if="${usuarios != null}" class="amigos-container10">
-                <form th:action="@{/comparar-process}" method="post" class="amigos-form1">
-                  <select name="seleccionado" class="amigos-select">
-                    <option th:each="usuario : ${usuarios}" th:value="${usuario.nombre}" th:text="${usuario.nombre}"></option>
-                  </select>
-                  <button type="submit" class="amigos-button1 button">
-                    Comparar
-                  </button>
-                </form>
-              </div>
-            </div>
-          </div>
-        </div>
-      </div>
-    </div>
-  </body>
+									</button>
+									<input type="Introduce el usuario a comparar" name="nombre"
+										placeholder="Introduzca un nombre"
+										class="amigos-textinput input" />
+								</form>
+							</div>
+						</div>
+						<p th:if="${errorspotify}" class="alert">
+							<span th:text="${errorspotify}"></span> <span class="closebtn"
+								onclick="this.parentElement.style.display='none';">&times;</span>
+						</p>
+						<div th:if="${usuarios != null}" class="amigos-container10">
+							<form th:action="@{/comparar-process}" method="post"
+								class="amigos-form1">
+								<select name="seleccionado" class="amigos-select">
+									<option th:each="usuario : ${usuarios}"
+										th:value="${usuario.nombre}" th:text="${usuario.nombre}"></option>
+								</select>
+								<button type="submit" class="amigos-button1 button">
+									Comparar</button>
+							</form>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+</body>
 </html>

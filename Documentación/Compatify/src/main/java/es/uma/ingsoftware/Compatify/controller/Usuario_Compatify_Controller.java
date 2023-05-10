@@ -37,8 +37,8 @@ public class Usuario_Compatify_Controller {
 	}
 
 	@PostMapping("/save") // post ejecutado en crear-sesion
-	public String saveUsuarioCompatify(RedirectAttributes ra, @RequestParam("month") int month, @RequestParam("day") String day,
-			@RequestParam("year") String year, Usuario_Compatify uc) {
+	public String saveUsuarioCompatify(RedirectAttributes ra, @RequestParam("month") int month,
+			@RequestParam("day") String day, @RequestParam("year") String year, Usuario_Compatify uc) {
 		int dayInt, yearInt;
 		if (uc.getNombre().length() == 0) {
 			ra.addFlashAttribute("error", "Tiene que introducir un nombre de usuario");
@@ -107,9 +107,10 @@ public class Usuario_Compatify_Controller {
 	}
 
 	@PostMapping("/edit") // post ejecutado en editar-perfil
-	public String editUsuarioCompatify(RedirectAttributes ra, HttpServletRequest request, @RequestParam("nombre") String nombre,
-			@RequestParam("email") String email, @RequestParam("genero") String genero,
-			@RequestParam("month") int month, @RequestParam("day") String day, @RequestParam("year") String year) {
+	public String editUsuarioCompatify(RedirectAttributes ra, HttpServletRequest request,
+			@RequestParam("nombre") String nombre, @RequestParam("email") String email,
+			@RequestParam("genero") String genero, @RequestParam("month") int month, @RequestParam("day") String day,
+			@RequestParam("year") String year) {
 		int dayInt, yearInt;
 		HttpSession session = request.getSession();
 		String userName = (String) session.getAttribute("userName");
@@ -199,7 +200,7 @@ public class Usuario_Compatify_Controller {
 		ra.addFlashAttribute("error", "Usuario o contraseña incorrectos");
 		return "redirect:/inicio-de-sesion";
 	}
-	
+
 	@RequestMapping("/cambio-de-contrasea")
 	public String cambiarContraseña() {
 		return "cambio-de-contrasea";
@@ -263,10 +264,10 @@ public class Usuario_Compatify_Controller {
 		ra.addFlashAttribute("usuarios", resultadoBusqueda);
 		return "redirect:/amigos";
 	}
-	
+
 	@RequestMapping("/comparar")
 	public String comparar(Model m) {
-		if(!m.containsAttribute("amigo")) {
+		if (!m.containsAttribute("amigo")) {
 			return "redirect:/amigos";
 		}
 		return "comparar";
@@ -279,33 +280,36 @@ public class Usuario_Compatify_Controller {
 		String nombreusuario1 = (String) session.getAttribute("userName");
 		Usuario_Spotify usuario1 = usuarioCompatifyService.getById(nombreusuario1).getUsuarioSpotify();
 		Usuario_Spotify usuario2 = usuarioCompatifyService.getById(nombreusuario2).getUsuarioSpotify();
-		List<Artista> artusuario1 = usuario1.getFavArtistas();
-		List<Artista> artusuario2 = usuario2.getFavArtistas();
-		List<Cancion> canusuario1 = usuario1.getFavCancion();
-		List<Cancion> canusuario2 = usuario2.getFavCancion();
-		canusuario1.retainAll(canusuario2);
-		artusuario1.retainAll(artusuario2);
-		if (canusuario1.size() == 0) {
-			ra.addFlashAttribute("errorcancion", "¡Vaya! No se ha encontrado ninguna canción en común");
-		} else {
-			ra.addFlashAttribute("canciones", canusuario1);
-		}
-		if (artusuario1.size() == 0) {
-			ra.addFlashAttribute("errorartista", "¡Vaya! No se ha encontrado ningún artista en común");
-		} else {
-			ra.addFlashAttribute("artistas", artusuario1);
+		try {
+			List<Artista> artusuario1 = usuario1.getFavArtistas();
+			List<Artista> artusuario2 = usuario2.getFavArtistas();
+			List<Cancion> canusuario1 = usuario1.getFavCancion();
+			List<Cancion> canusuario2 = usuario2.getFavCancion();
+			canusuario1.retainAll(canusuario2);
+			artusuario1.retainAll(artusuario2);
+			if (canusuario1.size() == 0) {
+				ra.addFlashAttribute("errorcancion", "¡Vaya! No se ha encontrado ninguna canción en común");
+			} else {
+				ra.addFlashAttribute("canciones", canusuario1);
+			}
+			if (artusuario1.size() == 0) {
+				ra.addFlashAttribute("errorartista", "¡Vaya! No se ha encontrado ningún artista en común");
+			} else {
+				ra.addFlashAttribute("artistas", artusuario1);
 
+			}
+			ra.addFlashAttribute("amigo", nombreusuario2);
+			int compatiblidad = logisticfunc(((float) 7 * artusuario1.size() + 3 * canusuario1.size()) / (float) 100);
+			ra.addFlashAttribute("compatibilidad", compatiblidad);
+		} catch (NullPointerException e) {
+			ra.addFlashAttribute("errorspotify", "¡Vaya! Parece que alguno de los 2 usuarios no tiene cuenta de Spotify asociada");
+			return "redirect:/amigos";
 		}
-		ra.addFlashAttribute("amigo", nombreusuario2);
-		int compatiblidad = logisticfunc(((float)7*artusuario1.size()+3*canusuario1.size())/(float)100);
-		ra.addFlashAttribute("compatibilidad", compatiblidad);
-
 		return "redirect:/comparar";
 	}
-	
-	public int logisticfunc(double x) { //función logística para calcular la compatibilidad
-		return (int) Math.round(100*((1.1/(1+Math.exp(-8.4*(x-0.275))))-0.1));
-	}
 
+	public int logisticfunc(double x) { // función logística para calcular la compatibilidad
+		return (int) Math.round(100 * ((1.1 / (1 + Math.exp(-8.4 * (x - 0.275)))) - 0.1));
+	}
 
 }
