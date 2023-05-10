@@ -129,7 +129,13 @@ public class Usuario_Spotify_Controller {
 
 			String email = jsonNodeS.path("email").asText();
 			String usuario_s = jsonNodeS.path("display_name").asText();
-			String foto_s = jsonNodeS.path("images").get(0).path("url").asText();
+			String foto_s;
+			if(jsonNodeS.path("images") == null){
+				foto_s = "";
+			}else{
+				foto_s = jsonNodeS.path("images").get(0).path("url").asText();
+			}
+			
 			
 
 			
