@@ -311,5 +311,9 @@ public class Usuario_Compatify_Controller {
 	public int logisticfunc(double x) { // función logística para calcular la compatibilidad
 		return (int) Math.round(100 * ((1.1 / (1 + Math.exp(-8.4 * (x - 0.275)))) - 0.1));
 	}
-
+	
+	@RequestMapping("/maquina")
+	public String showMaquina() {
+		return "maquina";
+	}
 }
