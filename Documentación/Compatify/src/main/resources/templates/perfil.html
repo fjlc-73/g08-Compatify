@@ -99,7 +99,7 @@
             <span class="perfil-text13">
               &nbsp; &nbsp;Última actualización&nbsp;
             </span>
-            <span class="perfil-text14">
+            <span th:text="${#dates.format(usuarioperfil.usuarioSpotify?.ultAct, 'dd/MM/yyyy')}" class="perfil-text14">
               ultima vez q actualizo los datos de su cuenta
             </span>
           </div>

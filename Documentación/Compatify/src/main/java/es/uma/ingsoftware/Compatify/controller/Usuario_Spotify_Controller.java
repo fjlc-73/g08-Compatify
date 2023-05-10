@@ -25,6 +25,8 @@ import com.fasterxml.jackson.databind.ObjectMapper;
 
 import es.uma.ingsoftware.Compatify.model.*;
 import es.uma.ingsoftware.Compatify.service.*;
+import jakarta.servlet.RequestDispatcher;
+import jakarta.servlet.ServletException;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
 import jakarta.servlet.http.HttpSession;
@@ -271,8 +273,17 @@ public class Usuario_Spotify_Controller {
 			
 
 
-	        
-			response.sendRedirect("/perfil");//Se redirige a la página principal
+			RequestDispatcher dd=request.getRequestDispatcher("/perfil");
+			try {
+				dd.forward(request, response);
+			} catch (ServletException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			} catch (IOException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
+			//response.sendRedirect("/perfil");//Se redirige a la página principal
 	    }
 
 		public void refrescar(@RequestParam(value = "code", required = false) String code,
