@@ -124,9 +124,9 @@
   display: contents;
 }
 .inicio-de-sesion-get-started {
-  height: 45px;
+  height: 60px;
   display: flex;
-  position: relative;
+  position: fixed;
   align-self: center;
   margin-top: 10px;
   align-items: center;
@@ -161,9 +161,10 @@
 }
 .inicio-de-sesion-container6 {
   width: 312px;
-  height: 197px;
+  height: 0px;
+  top: 601px;
   display: flex;
-  position: relative;
+  position: fixed;
   align-items: flex-start;
   flex-direction: column;
 }
