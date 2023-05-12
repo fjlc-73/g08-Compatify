@@ -13,21 +13,9 @@ public class Cancion {
 	@Id
 	private String spotify_id;
 	private String nombre;
-	private String generos;//no existe
-	private String foto;//no existe
-
-	public String getFoto() {
-		return foto;
-	}
-
-	public void setFoto(String foto) {
-		this.foto = foto;
-	}
 
 	@ManyToMany
 	private List<Artista> autores;
-	@ManyToMany(mappedBy = "favCancion")
-	private List<Usuario_Spotify> oyentes;
 
 	public Cancion() {
 		
@@ -46,28 +34,12 @@ public class Cancion {
 		this.autores = autores;
 	}
 
-	public List<Usuario_Spotify> getOyentes() {
-		return oyentes;
-	}
-
-	public void setOyentes(List<Usuario_Spotify> oyentes) {
-		this.oyentes = oyentes;
-	}
-
 	public String getSpotify_id() {
 		return spotify_id;
 	}
 
 	public void setSpotify_id(String spotify_id) {
 		this.spotify_id = spotify_id;
-	}
-
-	public String getGenero() {
-		return generos;
-	}
-
-	public void setGenero(String genero) {
-		this.generos = genero;
 	}
 
 	public String getNombre() {
@@ -97,7 +69,7 @@ public class Cancion {
 
 	@Override
 	public String toString() {
-		return "Canción [spotify_id=" + spotify_id + ", nombre=" + nombre + ", generos=" + generos + "]";
+		return "Canción [spotify_id=" + spotify_id + ", nombre=" + nombre + "]";
 	}
 
 }

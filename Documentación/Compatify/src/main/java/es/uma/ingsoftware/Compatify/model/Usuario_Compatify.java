@@ -1,13 +1,11 @@
 package es.uma.ingsoftware.Compatify.model;
 
 import java.util.Date;
-import java.util.List;
 import java.util.Objects;
 
 
 import jakarta.persistence.Entity;
 import jakarta.persistence.Id;
-import jakarta.persistence.ManyToMany;
 import jakarta.persistence.OneToOne;
 
 @Entity
@@ -19,13 +17,9 @@ public class Usuario_Compatify{
 	private String contraseña;
 	private String genero;
 	private Date fechanacimiento;
-	private boolean cuenta_privada;
 
 	@OneToOne
 	private Usuario_Spotify usuarioSpotify;
-
-	@ManyToMany
-	private List<Usuario_Compatify> amigos;
 
 	public Usuario_Compatify() {
 
@@ -55,14 +49,6 @@ public class Usuario_Compatify{
 		this.fechanacimiento = fechanacimiento;
 	}
 
-	public List<Usuario_Compatify> getAmigos() {
-		return amigos;
-	}
-
-	public void setAmigos(List<Usuario_Compatify> amigos) {
-		this.amigos = amigos;
-	}
-
 	public String getNombre() {
 		return nombre;
 	}
@@ -85,14 +71,6 @@ public class Usuario_Compatify{
 
 	public void setContraseña(String contraseña) {
 		this.contraseña = contraseña;
-	}
-
-	public boolean isCuenta_privada() {
-		return cuenta_privada;
-	}
-
-	public void setCuenta_privada(boolean cuenta_privada) {
-		this.cuenta_privada = cuenta_privada;
 	}
 
 	@Override
@@ -118,8 +96,7 @@ public class Usuario_Compatify{
 	@Override
 	public String toString() {
 		return "Usuario_Compatify [nombre=" + nombre + ", email=" + email + ", contraseña=" + contraseña + ", genero="
-				+ genero + ", fechanacimiento=" + fechanacimiento + ", cuenta_privada=" + cuenta_privada
-				+ ", usuarioSpotify=" + usuarioSpotify + ", amigos=" + amigos + "]";
+				+ genero + ", fechanacimiento=" + fechanacimiento + ", usuarioSpotify=" + usuarioSpotify + "]";
 	}
 
 }

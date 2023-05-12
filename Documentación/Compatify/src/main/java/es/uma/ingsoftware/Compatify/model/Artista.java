@@ -26,8 +26,6 @@ public class Artista {
 
 	@ManyToMany(mappedBy = "favArtistas")
 	private List<Usuario_Spotify> seguidores;
-	@ManyToMany(mappedBy = "autores")
-	private List<Cancion> canciones;
 
 	public Artista(){
 		
@@ -45,14 +43,6 @@ public class Artista {
 
 	public void setSeguidores(List<Usuario_Spotify> seguidores) {
 		this.seguidores = seguidores;
-	}
-
-	public List<Cancion> getCanciones() {
-		return canciones;
-	}
-
-	public void setCanciones(List<Cancion> canciones) {
-		this.canciones = canciones;
 	}
 
 	public String getSpotify_id() {
