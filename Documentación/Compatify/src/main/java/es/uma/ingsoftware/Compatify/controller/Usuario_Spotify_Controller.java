@@ -150,7 +150,6 @@ public class Usuario_Spotify_Controller {
 			//lo asociamos a la cuenta:
 			usuarioSpotifyService.save(user_s);
 			uc.setUsuarioSpotify(user_s);
-			System.out.println(uc);
 
 			usuarioCompatifyService.save(uc);
 
