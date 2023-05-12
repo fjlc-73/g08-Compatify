@@ -226,6 +226,7 @@ public class Usuario_Spotify_Controller {
 					refrescar(code, state, request, response, user_s);
 				}else{
 					//redirigir o dar un mensaje de error
+					RequestDispatcher dd=request.getRequestDispatcher("/perfil");
 				}
 				
 			}
@@ -276,6 +277,7 @@ public class Usuario_Spotify_Controller {
 					refrescar(code, state, request, response, user_s);
 				}else{
 					//redirigir o dar un mensaje de error
+					RequestDispatcher dd=request.getRequestDispatcher("/perfil");
 				}
 			}
 			
@@ -291,7 +293,6 @@ public class Usuario_Spotify_Controller {
 				// TODO Auto-generated catch block
 				e.printStackTrace();
 			}
-			//response.sendRedirect("/perfil");//Se redirige a la página principal
 	    }
 
 		public void refrescar(@RequestParam(value = "code", required = false) String code,
