@@ -130,8 +130,8 @@ public class Usuario_Spotify_Controller {
 			String email = jsonNodeS.path("email").asText();
 			String usuario_s = jsonNodeS.path("display_name").asText();
 			String foto_s;
-			if(jsonNodeS.path("images") == null){
-				foto_s = "";
+			if(jsonNodeS.path("images").get(0) == null){
+				foto_s = "https://www.nicepng.com/png/detail/202-2022264_usuario-annimo-usuario-annimo-user-icon-png-transparent.png";
 			}else{
 				foto_s = jsonNodeS.path("images").get(0).path("url").asText();
 			}

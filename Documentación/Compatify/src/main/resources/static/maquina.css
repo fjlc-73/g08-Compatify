@@ -1,0 +1,59 @@
+.maquina-container {
+  width: 100%;
+  display: flex;
+  overflow: auto;
+  min-height: 100vh;
+  align-items: center;
+  flex-direction: column;
+  justify-content: center;
+}
+.maquina-container1 {
+  width: 675px;
+  height: 314px;
+  display: flex;
+  align-items: center;
+  flex-direction: column;
+  justify-content: center;
+}
+.maquina-text {
+  color: #ffffff;
+  width: 612px;
+  height: 72px;
+  text-align: center;
+}
+.maquina-navlink {
+  display: contents;
+}
+.maquina-get-started {
+  width: 142px;
+  height: 56px;
+  display: flex;
+  position: relative;
+  align-self: center;
+  margin-top: 10px;
+  align-items: center;
+  margin-left: 0px;
+  justify-content: center;
+  text-decoration: none;
+  background-color: #00bb65;
+}
+.maquina-text1 {
+  color: rgb(12, 16, 12);
+  font-size: 16px;
+  align-self: center;
+  font-style: normal;
+  font-family: Poppins;
+  font-weight: 500;
+  line-height: 24px;
+}
+@media(max-width: 991px) {
+  .maquina-get-started {
+    flex: 1;
+  }
+}
+@media(max-width: 767px) {
+  .maquina-get-started {
+    padding-top: var(--dl-space-space-unit);
+    padding-bottom: var(--dl-space-space-unit);
+  }
+}

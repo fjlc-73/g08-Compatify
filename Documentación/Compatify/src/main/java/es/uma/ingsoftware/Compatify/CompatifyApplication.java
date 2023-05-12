@@ -18,6 +18,3 @@ public class CompatifyApplication {
         return new RestTemplate();
     }
 }
-
-
-
