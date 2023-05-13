@@ -49,11 +49,8 @@
 
       <div class="cerrar-sesion-container">
         <div class="cerrar-sesion-container1">
-          <img
-            alt="image"
-            src="https://play.teleporthq.io/static/svg/default-img.svg"
-            class="cerrar-sesion-image"
-          />
+          		<img class="cerrar-sesion-image" th:if="${usuario.usuarioSpotify != null}" th:src="${usuario.usuarioSpotify?.foto}" alt="image" />
+				<img class="cerrar-sesion-image" th:if="${usuario.usuarioSpotify == null}" src="https://www.nicepng.com/png/detail/202-2022264_usuario-annimo-usuario-annimo-user-icon-png-transparent.png" alt="image" />
           <div class="cerrar-sesion-container2"></div>
           <div class="cerrar-sesion-container3">
             <a href="perfil" class="cerrar-sesion-navlink">General</a>

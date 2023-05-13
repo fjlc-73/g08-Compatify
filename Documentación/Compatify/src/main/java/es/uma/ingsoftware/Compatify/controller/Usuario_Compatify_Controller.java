@@ -202,7 +202,11 @@ public class Usuario_Compatify_Controller {
 	}
 
 	@RequestMapping("/cambio-de-contrasea")
-	public String cambiarContraseña() {
+	public String cambiarContraseña(HttpServletRequest request, Model m) {
+		HttpSession session = request.getSession();
+		String userName = (String) session.getAttribute("userName");
+		Usuario_Compatify usuario_actual = usuarioCompatifyService.getById(userName);
+		m.addAttribute("usuario",usuario_actual);
 		return "cambio-de-contrasea";
 	}
 
@@ -237,7 +241,11 @@ public class Usuario_Compatify_Controller {
 	}
 
 	@RequestMapping("/cerrar-sesion")
-	public String viewCerrarSesion() {
+	public String viewCerrarSesion(HttpServletRequest request, Model m) {
+		HttpSession session = request.getSession();
+		String userName = (String) session.getAttribute("userName");
+		Usuario_Compatify usuario_actual = usuarioCompatifyService.getById(userName);
+		m.addAttribute("usuario",usuario_actual);
 		return "cerrar-sesion";
 	}
 
@@ -249,7 +257,11 @@ public class Usuario_Compatify_Controller {
 	}
 
 	@RequestMapping("/amigos")
-	public String showBuscador() {
+	public String showBuscador(HttpServletRequest request, Model m) {
+		HttpSession session = request.getSession();
+		String userName = (String) session.getAttribute("userName");
+		Usuario_Compatify usuario_actual = usuarioCompatifyService.getById(userName);
+		m.addAttribute("usuarioperfil",usuario_actual);
 		return "amigos";
 	}
 

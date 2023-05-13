@@ -120,11 +120,8 @@
           </form>
         </div>
         <div class="cambio-de-contrasea-container07">
-          <img
-            alt="image"
-            src="https://play.teleporthq.io/static/svg/default-img.svg"
-            class="cambio-de-contrasea-image"
-          />
+          		<img class="cambio-de-contrasea-image" th:if="${usuario.usuarioSpotify != null}" th:src="${usuario.usuarioSpotify?.foto}" alt="image" />
+				<img class="cambio-de-contrasea-image" th:if="${usuario.usuarioSpotify == null}" src="https://www.nicepng.com/png/detail/202-2022264_usuario-annimo-usuario-annimo-user-icon-png-transparent.png" alt="image" />
           <div class="cambio-de-contrasea-container08"></div>
           <div class="cambio-de-contrasea-container09">
             <a href="perfil" class="cambio-de-contrasea-navlink2">

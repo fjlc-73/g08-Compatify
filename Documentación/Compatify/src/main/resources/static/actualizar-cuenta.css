@@ -109,11 +109,12 @@
   display: contents;
 }
 .actualizar-cuenta-get-started1 {
-  left: 19px;
+  left: 24px;
   bottom: 1px;
   height: 51px;
   display: flex;
   position: absolute;
+  margin-bottom: 200px;
   align-items: center;
   border-color: var(--dl-color-gray-black);
   border-style: hidden;

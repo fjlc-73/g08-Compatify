@@ -127,9 +127,8 @@ body {
 
 		<div class="amigos-container">
 			<div class="amigos-container01">
-				<img alt="image"
-					src="https://play.teleporthq.io/static/svg/default-img.svg"
-					class="amigos-image" />
+				<img class="amigos-image" th:if="${usuarioperfil.usuarioSpotify != null}" th:src="${usuarioperfil.usuarioSpotify?.foto}" alt="image" />
+				<img class="amigos-image" th:if="${usuarioperfil.usuarioSpotify == null}" src="https://www.nicepng.com/png/detail/202-2022264_usuario-annimo-usuario-annimo-user-icon-png-transparent.png" alt="image" />
 				<div class="amigos-container02"></div>
 				<a href="perfil" class="amigos-link">&nbsp; General</a>
 				<aside class="amigos-container03">

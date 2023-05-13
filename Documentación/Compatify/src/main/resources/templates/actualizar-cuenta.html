@@ -129,11 +129,8 @@ body {
 				</div>
 				<div class="actualizar-cuenta-container03">
 					<span class="actualizar-cuenta-text13"> ¿Aun no has asociado
-						una cuenta de Spotify o quieres asociar una nueva cuenta? </span> <span
-						class="actualizar-cuenta-text14"> <span> Introduce
-							los datos de la cuenta de Spotify que quieres asociar para
-							futuras comparaciones </span> <br />
-					</span> <a href="login" class="actualizar-cuenta-navlink1">
+						una cuenta de Spotify o quieres asociar una nueva cuenta? </span> 
+						<a href="login" class="actualizar-cuenta-navlink1">
 						<div class="actualizar-cuenta-get-started1 button">
 							<span class="actualizar-cuenta-text17">Asociar</span>
 						</div>
@@ -141,9 +138,8 @@ body {
 				</div>
 			</div>
 			<div class="actualizar-cuenta-container06">
-				<img alt="image"
-					src="https://play.teleporthq.io/static/svg/default-img.svg"
-					class="actualizar-cuenta-image" />
+				<img class="actualizar-cuenta-image" th:if="${usuario.usuarioSpotify != null}" th:src="${usuario.usuarioSpotify?.foto}" alt="image" />
+				<img class="actualizar-cuenta-image" th:if="${usuario.usuarioSpotify == null}" src="https://www.nicepng.com/png/detail/202-2022264_usuario-annimo-usuario-annimo-user-icon-png-transparent.png" alt="image" />
 				<div class="actualizar-cuenta-container07"></div>
 				<div class="actualizar-cuenta-container08">
 					<a href="perfil" class="actualizar-cuenta-navlink2">General</a> <a
