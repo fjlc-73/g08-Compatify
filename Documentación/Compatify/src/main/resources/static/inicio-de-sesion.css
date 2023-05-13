@@ -126,7 +126,7 @@
 .inicio-de-sesion-get-started {
   height: 60px;
   display: flex;
-  position: fixed;
+  position: relative;
   align-self: center;
   margin-top: 10px;
   align-items: center;
@@ -162,9 +162,9 @@
 .inicio-de-sesion-container6 {
   width: 312px;
   height: 0px;
-  top: 601px;
+  top: -400px;
   display: flex;
-  position: fixed;
+  position: relative;
   align-items: flex-start;
   flex-direction: column;
 }
