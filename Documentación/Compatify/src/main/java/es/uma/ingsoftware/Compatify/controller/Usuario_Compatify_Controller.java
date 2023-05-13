@@ -75,14 +75,14 @@ public class Usuario_Compatify_Controller {
 	}
 
 	private boolean fechaValida(int dayInt, int month, int yearInt) {
+		LocalDate fecha;
 		try {
-			LocalDate fecha = LocalDate.of(yearInt, month, dayInt);
+			fecha = LocalDate.of(yearInt, month, dayInt);
 		} catch (java.time.DateTimeException e) {
 			return false;
 		}
-		int yearActual = LocalDate.now().getYear();
-		if (yearInt < 1900 || yearInt > yearActual) {
-			return false;
+		if(fecha.compareTo(LocalDate.now()) > 0 || yearInt < 1900) {
+			return false; //Fecha futura o anterior a 1900
 		}
 		return true;
 	}
@@ -273,7 +273,11 @@ public class Usuario_Compatify_Controller {
 		Usuario_Compatify usuario_actual = usuarioCompatifyService.getById(userName);
 		java.util.List<Usuario_Compatify> resultadoBusqueda = usuarioCompatifyService.buscarPorNombre(nombre);
 		resultadoBusqueda.remove(usuario_actual);
-		ra.addFlashAttribute("usuarios", resultadoBusqueda);
+		if(resultadoBusqueda.isEmpty()) {
+			ra.addFlashAttribute("errorspotify","No se ha encontrado ningún resultado para su búsqueda.");
+		}else {
+			ra.addFlashAttribute("usuarios", resultadoBusqueda);
+		}
 		return "redirect:/amigos";
 	}
 
