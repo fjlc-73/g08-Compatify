@@ -201,7 +201,13 @@ public class Usuario_Spotify_Controller {
 				for(JsonNode itemArt: itemsArt){//para cada item
 					String artistId = itemArt.path("id").asText();//id
 					String nombre = itemArt.path("name").asText();//nombre
-					String foto = itemArt.path("images").get(0).path("url").asText();
+					String foto;
+					if(itemArt.path("images").get(0) == null){
+						foto = "https://www.nicepng.com/png/detail/202-2022264_usuario-annimo-usuario-annimo-user-icon-png-transparent.png";
+					}else{
+						foto = itemArt.path("images").get(0).path("url").asText();
+					}
+
 					JsonNode genresNode = itemArt.get("genres");
 					String gen = "";
 					for(JsonNode genreNode: genresNode){
