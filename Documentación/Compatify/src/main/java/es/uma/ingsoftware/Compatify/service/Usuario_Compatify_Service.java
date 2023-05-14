@@ -26,7 +26,7 @@ public class Usuario_Compatify_Service {
 	}
 
 	public java.util.List<Usuario_Compatify> buscarPorNombre(String nombre) {
-		java.util.List<Usuario_Compatify> lista = usuarioCompatifyRepository.findByNombreContaining(nombre);
+		java.util.List<Usuario_Compatify> lista = usuarioCompatifyRepository.findByNombreContainingIgnoreCase(nombre);
 		return lista;
 	}
 	
