@@ -61,7 +61,7 @@ public class Usuario_Spotify_Controller {
 	
 	
 	@RequestMapping("/login")
-	public void login(HttpServletRequest request, HttpServletResponse response) throws IOException {
+	public void login(RedirectAttributes ra, HttpServletRequest request, HttpServletResponse response) throws IOException {
 		String state = generateRandomString(16);
 	    String scope = "user-top-read user-read-private user-read-email";//Permisos que se les pide al usuario, habría que ver cuales agregar
 	    
@@ -138,9 +138,6 @@ public class Usuario_Spotify_Controller {
 				foto_s = jsonNodeS.path("images").get(0).path("url").asText();
 			}
 			
-			
-
-			
 			//creamos el usuario spotify con esas caracteristicas:
 			Usuario_Spotify user_s = new Usuario_Spotify(usuario_s, access_token, refresh_token, email, foto_s);
 
@@ -155,7 +152,7 @@ public class Usuario_Spotify_Controller {
 
 			usuarioCompatifyService.save(uc);
 
-			GetInfo(code, state, ra, request, response);
+			response.sendRedirect("/asociar");
 		}
 	}
 
@@ -296,7 +293,7 @@ public class Usuario_Spotify_Controller {
 			
 
 
-			return "actualizar-cuenta";
+			return "redirect:/actualizar-cuenta";
 	    }
 
 		public void refrescar(@RequestParam(value = "code", required = false) String code,
@@ -330,7 +327,7 @@ public class Usuario_Spotify_Controller {
 
 			}catch(HttpClientErrorException ex){
 				if(ex.getStatusCode() == HttpStatus.UNAUTHORIZED || ex.getStatusCode() == HttpStatus.BAD_REQUEST){
-					login(request, response);
+					login(ra, request, response);
 				}else{
 					//mandar a algun lado
 				}
