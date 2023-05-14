@@ -20,6 +20,8 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.client.HttpClientErrorException;
 import org.springframework.web.client.RestTemplate;
 
+import org.springframework.web.servlet.mvc.support.RedirectAttributes;
+
 import com.fasterxml.jackson.databind.JsonNode;
 import com.fasterxml.jackson.databind.ObjectMapper;
 
@@ -80,7 +82,7 @@ public class Usuario_Spotify_Controller {
 	 */
 	@GetMapping("/callback")//Tras iniciar sesión en Spotify, se nos redirige a esta página, en la cuál se ejecuta este método
 	public void GetTokens(@RequestParam(value = "code", required = false) String code,
-	                     @RequestParam(value = "state", required = false) String state,
+	                     @RequestParam(value = "state", required = false) String state, RedirectAttributes ra,
 						 HttpServletRequest request, HttpServletResponse response) throws IOException {
 		//Recibimos como parámetros el código para solicitar el token y la cadena de estado enviada anteriormente. 
 		//Se debería comprobar que la cadena de estado devuelta coincide con la inicialmente mandada
@@ -153,14 +155,14 @@ public class Usuario_Spotify_Controller {
 
 			usuarioCompatifyService.save(uc);
 
-			GetInfo(code, state, request, response);
+			GetInfo(code, state, ra, request, response);
 		}
 	}
 
 
 	@RequestMapping("/asociar")
-	public void GetInfo(@RequestParam(value = "code", required = false) String code,
-						@RequestParam(value = "state", required = false) String state,
+	public String GetInfo(@RequestParam(value = "code", required = false) String code,
+						@RequestParam(value = "state", required = false) String state, RedirectAttributes ra,
 						HttpServletRequest request, HttpServletResponse response) throws IOException {
 
 			//primero conseguimos el usuario que esta pidiendo la información:
@@ -168,6 +170,12 @@ public class Usuario_Spotify_Controller {
 	    	String userName = (String) session.getAttribute("userName");
 			Usuario_Compatify uc = usuarioCompatifyService.getById(userName);
 			Usuario_Spotify user_s = uc.getUsuarioSpotify();
+
+			//vemos si este usuario Compatify tiene asociado un usuario compatify:
+			if(user_s == null){
+				ra.addFlashAttribute("errorspotify", "¡Vaya! No tienes cuenta Spotify asociada, prueba a Asociar tu cuenta");
+				return "redirect:/actualizar-cuenta";
+			}
 
 
 			user_s.setFavArtistas(null);
@@ -228,7 +236,7 @@ public class Usuario_Spotify_Controller {
 				
 			}catch(HttpClientErrorException ex){
 				if(ex.getStatusCode() == HttpStatus.UNAUTHORIZED){//Cuando el token no sirve
-					refrescar(code, state, request, response, user_s);
+					refrescar(code, state, ra, request, response, user_s);
 				}else{
 					//redirigir o dar un mensaje de error
 					RequestDispatcher dd=request.getRequestDispatcher("/perfil");
@@ -279,7 +287,7 @@ public class Usuario_Spotify_Controller {
 
 			}catch(HttpClientErrorException ex){
 				if(ex.getStatusCode() == HttpStatus.UNAUTHORIZED){//Cuando el token no sirve
-					refrescar(code, state, request, response, user_s);
+					refrescar(code, state, ra, request, response, user_s);
 				}else{
 					//redirigir o dar un mensaje de error
 					RequestDispatcher dd=request.getRequestDispatcher("/perfil");
@@ -288,20 +296,11 @@ public class Usuario_Spotify_Controller {
 			
 
 
-			RequestDispatcher dd=request.getRequestDispatcher("/perfil");
-			try {
-				dd.forward(request, response);
-			} catch (ServletException e) {
-				// TODO Auto-generated catch block
-				e.printStackTrace();
-			} catch (IOException e) {
-				// TODO Auto-generated catch block
-				e.printStackTrace();
-			}
+			return "actualizar-cuenta";
 	    }
 
 		public void refrescar(@RequestParam(value = "code", required = false) String code,
-							@RequestParam(value = "state", required = false) String state,
+							@RequestParam(value = "state", required = false) String state, RedirectAttributes ra,
 							HttpServletRequest request, HttpServletResponse response, Usuario_Spotify user_s) throws IOException{
 			//refresh token:
 			String refresh_token = user_s.getRefresh_token();
@@ -327,7 +326,7 @@ public class Usuario_Spotify_Controller {
 
 				user_s.setToken(access_token);
 
-				GetInfo(code, state, request, response);
+				GetInfo(code, state, ra, request, response);
 
 			}catch(HttpClientErrorException ex){
 				if(ex.getStatusCode() == HttpStatus.UNAUTHORIZED || ex.getStatusCode() == HttpStatus.BAD_REQUEST){

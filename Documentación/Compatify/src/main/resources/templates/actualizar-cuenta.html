@@ -14,7 +14,7 @@ html {
 }
 
 body {
-	margin: 0;
+	margin: 0px;
 }
 
 * {
@@ -25,7 +25,7 @@ body {
 
 p, li, ul, pre, div, h1, h2, h3, h4, h5, h6, figure, blockquote,
 	figcaption {
-	margin: 0;
+	margin: 0px;
 	padding: 0;
 }
 
@@ -92,6 +92,28 @@ body {
 	color: var(- -dl-color-gray-black);
 	background-color: var(- -dl-color-gray-white);
 }
+.alert {
+	padding: 20px;
+	background-color: #f44336;
+	color: white;
+	margin-top: 65px;
+	margin-bottom: 0px;
+}
+
+.closebtn {
+	margin-left: 15px;
+	color: white;
+	font-weight: bold;
+	float: right;
+	font-size: 22px;
+	line-height: 20px;
+	cursor: pointer;
+	transition: 0.3s;
+}
+
+.closebtn:hover {
+	color: black;
+}
 </style>
 <link rel="stylesheet"
 	href="https://fonts.googleapis.com/css2?family=Inter:wght@100;200;300;400;500;600;700;800;900&amp;display=swap"
@@ -111,6 +133,7 @@ body {
 					<span>&nbsp; Actualiza tu cuenta de&nbsp;</span> <br /> <span>&nbsp;
 						Spotify</span> <br />
 				</h1>
+				
 				<div class="actualizar-cuenta-container02">
 					<span class="actualizar-cuenta-text05"> La última
 						actualización de tu cuenta de Spotify se realizó el
@@ -121,12 +144,21 @@ body {
 					</span> <span class="actualizar-cuenta-text09"> <span>
 							¿Desea actualizar los datos de su actual cuenta de Spotify
 							enlazada? </span> <br />
+							<p th:if="${errorspotify}" class="alert">
+								<span th:text="${errorspotify}"></span> <span class="closebtn"
+									onclick="this.parentElement.style.display='none';">&times;</span>
+							</p>
 					</span> <a href="asociar" class="actualizar-cuenta-navlink">
 						<div class="actualizar-cuenta-get-started button">
 							<span class="actualizar-cuenta-text12">Actualizar</span>
+							
 						</div>
+						
 					</a>
+					
 				</div>
+				
+				
 				<div class="actualizar-cuenta-container03">
 					<span class="actualizar-cuenta-text13"> ¿Aun no has asociado
 						una cuenta de Spotify o quieres asociar una nueva cuenta? </span> 
